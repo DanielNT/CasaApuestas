@@ -130,7 +130,8 @@ public class ControladorPartidos {
 		}
 		
 		//Variable de control de la búsqueda;
-		boolean BUS=false;
+		boolean BUSQUEDA= false; 
+		
 		//Obtiene la fecha actual del sistema para saber si se puede apostar
 		Calendar fechaActual = Calendar.getInstance();
 		fechaActual.getTime();
@@ -138,19 +139,20 @@ public class ControladorPartidos {
 	
 		for(Partido p : listaPartidos.values()){
 			
-			if (listaPartidos.containsKey(idPartido)) {
+			if (p.getIdPartido().equals(idPartido)) {
 			
 				//Si la fecha actual es posterior a la fijada para el inicio de apuesta e inferior a la de fin Apuesta
 				if((fechaActual.before(p.getfFinApuesta())) && (fechaActual.after(p.getfInicApuesta()))){
-					System.out.println("\n" + p.getfInicApuesta().getTime().toLocaleString() +"\n");
-					System.out.println("\n" + p.getfFinApuesta().getTime().toLocaleString() +"\n");
-					System.out.println("\n" + fechaActual.getTime().toLocaleString() +"\n");
-					
+	
 					Apuesta nuevaApuesta = new Apuesta(login, idPartido, tApuesta,resultado,cantidadApostada,p.getEquipoL(),p.getEquipoV());
 					// Y la colecciona
 					listadoApuestas.add(nuevaApuesta);
 					cu.realizarApuestaJugador(login, cantidadApostada, p.getEquipoL(), p.getEquipoV());
-					BUS=true;
+					
+					//Pone las variables de control a TRUE
+					BUSQUEDA=true;
+
+					//sale del bucle
 					break;
 				}
 			
@@ -159,11 +161,11 @@ public class ControladorPartidos {
 				}
 			}
 			
-			//Manda una excepción para el partido
-			if (BUS==false){
+		}
+			//Manda una excepción para el partido solo si no encuentra el id
+			if (BUSQUEDA==false){
 				throw new ExcepcionPartidos(CausaExcepcionPartidos.NO_EXISTE, idPartido);
-			}
-		}			
+			}	
 		
 	}
 	
