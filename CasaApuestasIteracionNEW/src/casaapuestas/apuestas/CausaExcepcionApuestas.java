@@ -7,6 +7,6 @@ package casaapuestas.apuestas;
 public enum CausaExcepcionApuestas {
 	ERROR_CREAR_APUESTA,
 	YA_EXISTE,
-	APUESTA_FINALIZADA
+	PARTIDO_CERRADO
 	
 }

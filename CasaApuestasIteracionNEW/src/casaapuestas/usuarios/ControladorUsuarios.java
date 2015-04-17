@@ -167,7 +167,7 @@ public class ControladorUsuarios {
 	}
 	
 	/**
-	 * Realiza apuesta en la cuenta de un jugador
+	 * Realiza apuesta de una <code>cantidad</code>en la cuenta de un jugador
 	 * 
 	 * @param login El login del usuario
 	 * @param cantidad La cantidad de apostada
@@ -178,7 +178,7 @@ public class ControladorUsuarios {
 		Jugador esteJugador = listaJugadores.get(login);
 		// Si este jugador existía, no es null
 		if (esteJugador != null) {
-			// Así que delegamos en él que realice el ingreso
+			// Así que delegamos en él que realice el ingreso negativo (por ello se le suma la cantidad cambiada de signo)
 			esteJugador.realizarIngreso("Pago de apuesta sobre " + eqLocal + "-" + eqVisitante, -cantidad);
 		} else {
 			// Pero si no existía lanza una excepción

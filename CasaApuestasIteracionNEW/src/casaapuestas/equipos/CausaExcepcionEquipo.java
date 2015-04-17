@@ -6,5 +6,8 @@ package casaapuestas.equipos;
  */
 public enum CausaExcepcionEquipo {
 	YA_EXISTE,
+	NO_EXISTE,
+	EQ_DUPLICADO,
+	EQ_INCORRECTO
 	
 }

@@ -15,6 +15,12 @@ public class ExcepcionApuesta extends Exception {
 	private CausaExcepcionApuestas causa;
 
 	
+	/**
+	 * Constructor de la clase ExcepcionApuesta
+	 * 
+	 * @param causa Causa de la excepción
+	 * @param login El login del usuario
+	 */
 	public ExcepcionApuesta(CausaExcepcionApuestas causa, String login) {
 		super();
 		// Asigna los parámetros
