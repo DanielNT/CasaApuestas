@@ -1,16 +1,5 @@
 package casaapuestas.equipos;
 
-import casaapuestas.cuentas.*;
-import casaapuestas.usuarios.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 
 public class Equipo {
 	

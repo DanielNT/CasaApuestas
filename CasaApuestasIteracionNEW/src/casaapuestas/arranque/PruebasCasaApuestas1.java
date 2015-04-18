@@ -3,7 +3,9 @@ package casaapuestas.arranque;
 import java.util.Calendar;
 import java.util.List;
 
-import casaapuestas.equipos.ExcepcionEquipo;
+import casaapuestas.apuestas.ControladorApuestas;
+import casaapuestas.apuestas.ExcepcionApuesta;
+import casaapuestas.apuestas.TipoApuesta;
 import casaapuestas.partidos.ControladorPartidos;
 import casaapuestas.partidos.ExcepcionPartidos;
 import casaapuestas.usuarios.ControladorUsuarios;
@@ -26,6 +28,15 @@ public class PruebasCasaApuestas1 {
 		ControladorUsuarios cu = new ControladorUsuarios();
 		//Crea una instancia de controlador de partidos
 		ControladorPartidos cp = new ControladorPartidos(cu);
+		
+		
+		
+		
+		//Crea una instancia de controlador de partidos
+		ControladorApuestas ca = new ControladorApuestas();
+		
+		
+		
 
 		////////////////////////////////////////////////////////
 		// CASOS DE USO PREVIOS
@@ -114,42 +125,47 @@ public class PruebasCasaApuestas1 {
 			System.out.println("\nMuestro el partido con identificador 'p2', para comprobar la modificación");
 			ficha = cp.mostrarPartido("p2");
 			System.out.println(ficha);
-//			
-//			//Caso de uso "eliminar partido"
-//			System.out.println("\nElimino el partido con identificador 'p2'");
-//			cp.eliminarPartido("p2");
-//			
-//			// Función de listar, que forma parte de los casos de uso "ver partido", "modificar partido" y "borrar partido"
-//			System.out.println("\nListo los partidos existentes, para comprobar la eliminación");
-//			listado = cp.listarPartidos();
-//			for(String s : listado) {
-//				System.out.println(s);
-//			}
-//			
-//			//Caso de uso "crear partido"
-//			System.out.println("\nCreo un partido adicional, pero admitiendo apuestas una semana más tarde");
-//			cp.nuevoPartido("Burgos", "Zamora", inicioApuestas2, finApuestas2);
-//
-//			//Caso de uso "ver partido"
-//			System.out.println("\nMuestro el partido con identificador 'p3', recién creado");
-//			ficha = cp.mostrarPartido("p3");
-//			System.out.println(ficha);
-//
-//			
-//			// Función de listar, limitando el listado a los partidos que admiten apuestas, necesaria en "crear apuesta"
-//			//NOTA: para que esto funcione hay que "trucar" el sistema de manera que crea que la fecha actual está en medio del intervalo en el que se admiten apuestas
-//			System.out.println("\nListo los partidos que admiten apuestas (sólo deberían salir dos)");
-//			listado = cp.listarPartidosAbiertos();
-//			for(String s : listado) {
-//				System.out.println(s);
-//			}
-//			
-//			//Caso de uso "crear apuesta" (después de haber listado los usuarios y haber visto que tienen saldo, y también de haber listado los partidos abiertos)
-//			System.out.println("\nCreo dos apuestas de 'marcador' y dos apuestas de 'quiniela' sobre el partido con identificador 'p0'");
-//			cp.nuevaApuesta("edugom", "p0", TipoApuesta.MARCADOR, "1-1", (float)20.0);
-//			cp.nuevaApuesta("mperez", "p0", TipoApuesta.MARCADOR, "2-1", (float)10.0);
-//			cp.nuevaApuesta("edugom", "p0", TipoApuesta.QUINIELA, "2", (float)15.0);
-//			cp.nuevaApuesta("mperez", "p0", TipoApuesta.QUINIELA, "X", (float)8.5);
+			
+			//Caso de uso "eliminar partido"
+			System.out.println("\nElimino el partido con identificador 'p2'");
+			cp.eliminarPartido("p2");
+			
+			// Función de listar, que forma parte de los casos de uso "ver partido", "modificar partido" y "borrar partido"
+			System.out.println("\nListo los partidos existentes, para comprobar la eliminación");
+			listado = cp.listarPartidos();
+			for(String s : listado) {
+				System.out.println(s);
+			}
+			
+			//Caso de uso "crear partido"
+			System.out.println("\nCreo un partido adicional, pero admitiendo apuestas una semana más tarde");
+			cp.añadirPartido("Burgos", "Zamora", inicioApuestas2, finApuestas2);
+
+			//Caso de uso "ver partido"
+			System.out.println("\nMuestro el partido con identificador 'p3', recién creado");
+			ficha = cp.mostrarPartido("p2");
+			System.out.println(ficha);
+
+			
+			// Función de listar, limitando el listado a los partidos que admiten apuestas, necesaria en "crear apuesta"
+			//NOTA: para que esto funcione hay que "trucar" el sistema de manera que crea que la fecha actual está en medio del intervalo en el que se admiten apuestas
+			System.out.println("\nListo los partidos que admiten apuestas (sólo deberían salir dos)");
+			listado = cp.verPartidosAbiertosAApuesta();
+			for(String s : listado) {
+				System.out.println(s);
+			}
+			
+			//
+			// PASAMOS A CONTROLADOR DE PARTIDOS A APUESTAS
+			//
+			
+			
+			//Caso de uso "crear apuesta" (después de haber listado los usuarios y haber visto que tienen saldo, y también de haber listado los partidos abiertos)
+			System.out.println("\nCreo dos apuestas de 'marcador' y dos apuestas de 'quiniela' sobre el partido con identificador 'p0'");
+			ca.nuevaApuesta("edugom", "p0", TipoApuesta.MARCADOR, "1-1", (float)20.0);
+			ca.nuevaApuesta("mperez", "p0", TipoApuesta.MARCADOR, "2-1", (float)10.0);
+			ca.nuevaApuesta("edugom", "p0", TipoApuesta.QUINIELA, "2", (float)15.0);
+			ca.nuevaApuesta("mperez", "p0", TipoApuesta.QUINIELA, "X", (float)8.5);
 //			
 //			//Caso de uso "listar apuestas partido"
 //			System.out.println("\nListo las apuestas realizadas sobre el partido con identificador 'p0'");
@@ -177,11 +193,11 @@ public class PruebasCasaApuestas1 {
 //			//Si se llega hasta aquí alguna operación con usuarios ha ido mal
 //			System.out.println("Ha fallado una operación sobre el usuario con identificador '" + eu.getLogin() + "', por la siguiente causa: " + eu.getCausa().toString());
 //		} 
-//			catch (ExcepcionApuesta ea) {
-//			//Si se llega hasta aquí alguna operación con apuestas ha ido mal
-//			System.out.println("Ha fallado una operación de apuestas por la siguiente causa: " + ea.getCausa().toString());
-//		}
-//		
+			catch (ExcepcionApuesta ea) {
+			//Si se llega hasta aquí alguna operación con apuestas ha ido mal
+			System.out.println("Ha fallado una operación de apuestas por la siguiente causa: " + ea.getCausa().toString());
+		}
+		
 //		////////////////////////////////////////////////////////
 //		// CASOS DE USO EN ESCENARIOS DE FALLO
 //		////////////////////////////////////////////////////////	

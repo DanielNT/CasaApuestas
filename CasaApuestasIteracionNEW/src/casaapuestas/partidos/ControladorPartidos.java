@@ -64,9 +64,11 @@ public class ControladorPartidos {
 	 * @param idPartido
 	 * @return la información completa del partido
 	 */
-	public String mostrarPartido(String idPartido) {
+	public String mostrarPartido(String idPartido){
+		
 		Partido estePartido = listaPartidos.get(idPartido);
 		return estePartido.verInfoCompleta();
+	
 	}
 	
 	
@@ -82,6 +84,7 @@ public class ControladorPartidos {
 		
 				Partido p = new Partido(idPartido, equipoL, equipoV, 0, 0, ResultadoQuiniela.EMPATE, fInicApuesta, fFinApuesta);
 				listaPartidos.put(idPartido, p);
+				
 				break;
 			}
 		}
@@ -148,6 +151,36 @@ public class ControladorPartidos {
 		}
 	}
 		
+	/**
+	 * Muestra partidos abiertos a apuestas
+	 * @return lista de los partidos abiertos a apuestas
+	 */
+	public List<String> verPartidosAbiertosAApuesta() throws ExcepcionPartidos{
+		
+		List<String> listado3 = new ArrayList<String>();
+		
+		//Obtiene la fecha actual del sistema
+		Calendar fechaActual = Calendar.getInstance();
+		fechaActual.getTime();
 	
+		
+		for(Partido p : listaPartidos.values()){
+			
+			//Si la fecha actual es posterior a la fijada para el inicio de apuesta e inferior a la de fin Apuesta
+			if(fechaActual.before(p.getfFinApuesta()) && fechaActual.after(p.getfInicApuesta())){
+				
+				String ficha3 = p.verInfoPartido();
+				listado3.add(ficha3);
+			}
+		}
+		
+		//Si el listado está vacío, manda una excepción (o bien avisa de que no hay partidos abiertos)
+		if(listado3.isEmpty()){
+			throw new ExcepcionPartidos(CausaExcepcionPartidos.NO_PART_ABIERTOS_APUESTAS,"0");
+		}
+		
+		return listado3;
+	
+	}
 
 }
