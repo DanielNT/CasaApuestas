@@ -6,6 +6,7 @@ import java.util.List;
 import casaapuestas.apuestas.ControladorApuestas;
 import casaapuestas.apuestas.ExcepcionApuesta;
 import casaapuestas.apuestas.TipoApuesta;
+import casaapuestas.equipos.ExcepcionEquipo;
 import casaapuestas.partidos.ControladorPartidos;
 import casaapuestas.partidos.ExcepcionPartidos;
 import casaapuestas.usuarios.ControladorUsuarios;

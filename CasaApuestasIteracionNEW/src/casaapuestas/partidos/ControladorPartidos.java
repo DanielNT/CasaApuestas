@@ -11,7 +11,9 @@ import casaapuestas.equipos.*;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +27,7 @@ public class ControladorPartidos {
 	
 	private Map<String, Partido> listaPartidos;
 	private Map<String, Equipo> listaEquipos;
-	private Map<String, Apuesta> listadoApuestas;
+	private Set <Apuesta> listadoApuestas;
 	
 	/**
 	 * Constructor que inicializa las colecciones
@@ -34,7 +36,7 @@ public class ControladorPartidos {
 
 		listaPartidos = new HashMap<String, Partido>();
 		listaEquipos =new HashMap<String, Equipo>();
-		listadoApuestas =new LinkedHashMap<String, Apuesta>();
+		listadoApuestas =new LinkedHashSet<Apuesta>();
 	}
 	
 	/**
@@ -68,22 +70,25 @@ public class ControladorPartidos {
 	
 	
 	public List<String> listarApuestasPartido(String idPartido) {
-		
+
 		List<String> listado4 = new ArrayList<String>();
+		Iterator<Apuesta> iter = listadoApuestas.iterator();
 		
-		if (!listaPartidos.containsKey(idPartido)) {
-			
-			for (Partido p : listaPartidos.values()) {
-		
+		if (listaPartidos.containsKey(idPartido)) {
+				
 				//Para todas las apuestas
-				for (Apuesta a : listadoApuestas.values()) {
-					String ficha = a.verInfoApuesta() + p.getEquipoL() + "-" + p.getEquipoV();
+				while(iter.hasNext()) {
+					Apuesta a= (Apuesta) iter.next();
+					String ficha = a.verInfoApuesta();
 					listado4.add(ficha);
 				}
-			}
+				
+//			}
 		
 		}
 		return listado4;
+		
+		
 	}
 	
 	
@@ -97,22 +102,32 @@ public class ControladorPartidos {
 	 * @throws ExcepcionApuesta
 	 */
 	public void nuevaApuesta(String login, String idPartido, TipoApuesta tApuesta, String resultado,float cantidadApostada)throws ExcepcionApuesta{
-
-				if (!listadoApuestas.containsKey(idPartido)) {
-					// Si no existe, crea la instancia
-					Apuesta nuevaApuesta = new Apuesta(login, idPartido, tApuesta,resultado,cantidadApostada);
+		
+		//Obtiene la fecha actual del sistema para saber si se puede apostar
+		Calendar fechaActual = Calendar.getInstance();
+		fechaActual.getTime();
+			
+		for(Partido p : listaPartidos.values()){
+			
+			if (listaPartidos.containsKey(idPartido)) {
+			
+				//Si la fecha actual es posterior a la fijada para el inicio de apuesta e inferior a la de fin Apuesta
+				if(fechaActual.before(p.getfFinApuesta()) && fechaActual.after(p.getfInicApuesta())){
+					Apuesta nuevaApuesta = new Apuesta(login, idPartido, tApuesta,resultado,cantidadApostada,p.getEquipoL(),p.getEquipoV());
 					// Y la colecciona
-					listadoApuestas.put(idPartido, nuevaApuesta);
-				} else {
-					// Pero si ya existía lanza una excepción
-					 throw new ExcepcionApuesta(CausaExcepcionApuestas.ERROR_CREAR_APUESTA, login);
+					listadoApuestas.add(nuevaApuesta);
+					break;
 				}
+			
+				else{
+					throw new ExcepcionApuesta(CausaExcepcionApuestas.APUESTA_FINALIZADA, idPartido);
+				}
+			}
+		}
+				
+				
+		
 	}
-	
-	
-	
-	
-	
 	
 	
 	
@@ -133,19 +148,15 @@ public class ControladorPartidos {
 	
 	public void añadirPartido(String equipoL, String equipoV, Calendar fInicApuesta, Calendar fFinApuesta) {
 		
-		int id;
-		
-		for(id=0; ;id++){
+			String idPartido= "p" + listaPartidos.size();
 			
-			String idPartido= "p" + id;
 			if (!listaPartidos.containsKey(idPartido)) {
 		
 				Partido p = new Partido(idPartido, equipoL, equipoV, 0, 0, ResultadoQuiniela.EMPATE, fInicApuesta, fFinApuesta);
 				listaPartidos.put(idPartido, p);
 				
-				break;
 			}
-		}
+		
 		
 	}
 	
@@ -164,9 +175,9 @@ public class ControladorPartidos {
 		 if (listaPartidos.containsKey(idPartido)){ 
 			 listaPartidos.remove(idPartido,p);
 	     }
-		 else{
-			 throw new ExcepcionPartidos(CausaExcepcionPartidos.ERROR_ELIMINAR, idPartido);
-		 }
+//		 else{
+//			 throw new ExcepcionPartidos(CausaExcepcionPartidos.ERROR_ELIMINAR, idPartido);
+//		 }
 		 
 	}
 	
@@ -179,10 +190,11 @@ public class ControladorPartidos {
 			Equipo nuevoEquipo = new Equipo(nombre, nombreCompleto);
 			// Y la colecciona
 			listaEquipos.put(nombre, nuevoEquipo);
-		} else {
-			// Pero si ya existía lanza una excepción
-			 throw new ExcepcionPartidos(CausaExcepcionPartidos.YA_EXISTE_E, nombre);
-		}
+		} 
+//		else {
+//			// Pero si ya existía lanza una excepción
+//			 throw new ExcepcionPartidos(CausaExcepcionPartidos.YA_EXISTE_E, nombre);
+//		}
 	}
 		
 	
@@ -203,10 +215,11 @@ public class ControladorPartidos {
 			estePartido.setfInicApuesta(fInicApuesta);
 			estePartido.setfFinApuesta(fFinApuesta);
 			
-		} else {
-			// Pero si no existía lanza una excepción
-			throw new ExcepcionPartidos(CausaExcepcionPartidos.NO_EXISTE, idPartido);
-		}
+		} 
+//		else {
+//			// Pero si no existía lanza una excepción
+//			throw new ExcepcionPartidos(CausaExcepcionPartidos.NO_EXISTE, idPartido);
+//		}
 	}
 		
 	/**
