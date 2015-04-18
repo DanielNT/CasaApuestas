@@ -155,24 +155,19 @@ public class PruebasCasaApuestas1 {
 				System.out.println(s);
 			}
 			
-			//
-			// PASAMOS A CONTROLADOR DE PARTIDOS A APUESTAS
-			//
-			
-			
 			//Caso de uso "crear apuesta" (después de haber listado los usuarios y haber visto que tienen saldo, y también de haber listado los partidos abiertos)
 			System.out.println("\nCreo dos apuestas de 'marcador' y dos apuestas de 'quiniela' sobre el partido con identificador 'p0'");
-			ca.nuevaApuesta("edugom", "p0", TipoApuesta.MARCADOR, "1-1", (float)20.0);
-			ca.nuevaApuesta("mperez", "p0", TipoApuesta.MARCADOR, "2-1", (float)10.0);
-			ca.nuevaApuesta("edugom", "p0", TipoApuesta.QUINIELA, "2", (float)15.0);
-			ca.nuevaApuesta("mperez", "p0", TipoApuesta.QUINIELA, "X", (float)8.5);
-//			
-//			//Caso de uso "listar apuestas partido"
-//			System.out.println("\nListo las apuestas realizadas sobre el partido con identificador 'p0'");
-//			listado = cp.listarApuestasPartido("p0");
-//			for(String s : listado) {
-//				System.out.println(s);
-//			}
+			cp.nuevaApuesta("edugom", "p0", TipoApuesta.MARCADOR, "1-1", (float)20.0);
+			cp.nuevaApuesta("mperez", "p0", TipoApuesta.MARCADOR, "2-1", (float)10.0);
+			cp.nuevaApuesta("edugom", "p0", TipoApuesta.QUINIELA, "2", (float)15.0);
+			cp.nuevaApuesta("mperez", "p0", TipoApuesta.QUINIELA, "X", (float)8.5);
+			
+			//Caso de uso "listar apuestas partido"
+			System.out.println("\nListo las apuestas realizadas sobre el partido con identificador 'p0'");
+			listado = cp.listarApuestasPartido("p0");
+			for(String s : listado) {
+				System.out.println(s);
+			}
 //			
 //			// Caso de uso "listar movimientos de cuenta de jugador"
 //			System.out.println("\nListo los movimientos de la cuenta del jugador con identificador 'edugom' para comprobar que se han anotado sus apuestas");

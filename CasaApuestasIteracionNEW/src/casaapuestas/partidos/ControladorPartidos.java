@@ -1,5 +1,9 @@
 package casaapuestas.partidos;
 
+import casaapuestas.apuestas.Apuesta;
+import casaapuestas.apuestas.CausaExcepcionApuestas;
+import casaapuestas.apuestas.ExcepcionApuesta;
+import casaapuestas.apuestas.TipoApuesta;
 import casaapuestas.cuentas.*;
 import casaapuestas.partidos.Partido.ResultadoQuiniela;
 import casaapuestas.usuarios.*;
@@ -7,9 +11,11 @@ import casaapuestas.equipos.*;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -19,6 +25,7 @@ public class ControladorPartidos {
 	
 	private Map<String, Partido> listaPartidos;
 	private Map<String, Equipo> listaEquipos;
+	private Map<String, Apuesta> listadoApuestas;
 	
 	/**
 	 * Constructor que inicializa las colecciones
@@ -27,6 +34,7 @@ public class ControladorPartidos {
 
 		listaPartidos = new HashMap<String, Partido>();
 		listaEquipos =new HashMap<String, Equipo>();
+		listadoApuestas =new LinkedHashMap<String, Apuesta>();
 	}
 	
 	/**
@@ -56,7 +64,57 @@ public class ControladorPartidos {
 		}
 
 		return listado2;
-}
+	}
+	
+	
+	public List<String> listarApuestasPartido(String idPartido) {
+		
+		List<String> listado4 = new ArrayList<String>();
+		
+		if (!listaPartidos.containsKey(idPartido)) {
+			
+			for (Partido p : listaPartidos.values()) {
+		
+				//Para todas las apuestas
+				for (Apuesta a : listadoApuestas.values()) {
+					String ficha = a.verInfoApuesta() + p.getEquipoL() + "-" + p.getEquipoV();
+					listado4.add(ficha);
+				}
+			}
+		
+		}
+		return listado4;
+	}
+	
+	
+	
+	/**
+	 * @param login
+	 * @param idPartido
+	 * @param tApuesta
+	 * @param resultado
+	 * @param cantidadApostada
+	 * @throws ExcepcionApuesta
+	 */
+	public void nuevaApuesta(String login, String idPartido, TipoApuesta tApuesta, String resultado,float cantidadApostada)throws ExcepcionApuesta{
+
+				if (!listadoApuestas.containsKey(idPartido)) {
+					// Si no existe, crea la instancia
+					Apuesta nuevaApuesta = new Apuesta(login, idPartido, tApuesta,resultado,cantidadApostada);
+					// Y la colecciona
+					listadoApuestas.put(idPartido, nuevaApuesta);
+				} else {
+					// Pero si ya existía lanza una excepción
+					 throw new ExcepcionApuesta(CausaExcepcionApuestas.ERROR_CREAR_APUESTA, login);
+				}
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	/**
 	 * Muestra la información del partido para el ID indicado
