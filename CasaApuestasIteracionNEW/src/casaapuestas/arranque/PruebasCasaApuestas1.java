@@ -144,7 +144,7 @@ public class PruebasCasaApuestas1 {
 
 			//Caso de uso "ver partido"
 			System.out.println("\nMuestro el partido con identificador 'p3', recién creado");
-			ficha = cp.mostrarPartido("p2");
+			ficha = cp.mostrarPartido("p3");
 			System.out.println(ficha);
 
 			
