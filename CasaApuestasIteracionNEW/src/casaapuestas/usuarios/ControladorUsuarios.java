@@ -11,7 +11,7 @@ import casaapuestas.cuentas.ExcepcionCuenta;
 /**
  * Clase controladora que recibe los métodos provenientes de la UI relacionados con la gestión de usuarios
  * 
- * @author Eduardo Gómez Sánchez, ETSIT UVa.
+ * @author Eduardo Gómez Sánchez, ETSIT UVa. +iss002
  */
 public class ControladorUsuarios {
 	/**
@@ -28,6 +28,7 @@ public class ControladorUsuarios {
 		listaJugadores = new HashMap<String, Jugador>();
 	}
 
+	
 	/**
 	 * Método que crea una nueva instancia de <code>Jugador</code> y la colecciona, indexada por el <code>login</code>
 	 * 
@@ -159,6 +160,26 @@ public class ControladorUsuarios {
 		if (esteJugador != null) {
 			// Así que delegamos en él que realice el ingreso
 			esteJugador.realizarIngreso("Ingreso en efectivo por el usuario " + login, cantidad);
+		} else {
+			// Pero si no existía lanza una excepción
+			throw new ExcepcionUsuario(CausaExcepcionUsuario.NO_EXISTE, login);
+		}
+	}
+	
+	/**
+	 * Realiza apuesta en la cuenta de un jugador
+	 * 
+	 * @param login El login del usuario
+	 * @param cantidad La cantidad de apostada
+	 * @throws ExcepcionUsuario si algo sale mal
+	 */
+	public void realizarApuestaJugador(String login, float cantidad, String eqLocal, String eqVisitante) throws ExcepcionUsuario {
+		// Recupera la instancia de la colección
+		Jugador esteJugador = listaJugadores.get(login);
+		// Si este jugador existía, no es null
+		if (esteJugador != null) {
+			// Así que delegamos en él que realice el ingreso
+			esteJugador.realizarIngreso("Pago de apuesta sobre " + eqLocal + "-" + eqVisitante, -cantidad);
 		} else {
 			// Pero si no existía lanza una excepción
 			throw new ExcepcionUsuario(CausaExcepcionUsuario.NO_EXISTE, login);

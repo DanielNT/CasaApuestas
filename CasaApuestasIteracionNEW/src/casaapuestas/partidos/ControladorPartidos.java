@@ -13,9 +13,11 @@ import casaapuestas.apuestas.Apuesta;
 import casaapuestas.apuestas.CausaExcepcionApuestas;
 import casaapuestas.apuestas.ExcepcionApuesta;
 import casaapuestas.apuestas.TipoApuesta;
+import casaapuestas.cuentas.Movimiento;
 import casaapuestas.equipos.Equipo;
 import casaapuestas.partidos.Partido.ResultadoQuiniela;
 import casaapuestas.usuarios.ControladorUsuarios;
+import casaapuestas.usuarios.ExcepcionUsuario;
 
 /**
  * Controlador de partidos, integra el de apuestas y el de equipos
@@ -26,18 +28,22 @@ import casaapuestas.usuarios.ControladorUsuarios;
 public class ControladorPartidos {
 	
 	
+	private ControladorUsuarios cu;
 	private Map<String, Partido> listaPartidos;
 	private Map<String, Equipo> listaEquipos;
 	private Set <Apuesta> listadoApuestas;
+	
 	
 	/**
 	 * Constructor que inicializa las colecciones
 	 */
 	public ControladorPartidos(ControladorUsuarios cu){
 
+		this.cu=cu;
 		listaPartidos = new HashMap<String, Partido>();
 		listaEquipos =new HashMap<String, Equipo>();
 		listadoApuestas =new LinkedHashSet<Apuesta>();
+//		listadoMovimientosApuesta =new LinkedHashSet<Movimiento>();
 	}
 	
 	/**
@@ -114,6 +120,7 @@ public class ControladorPartidos {
 	 */
 	public void nuevaApuesta(String login, String idPartido, TipoApuesta tApuesta, String resultado,float cantidadApostada)throws ExcepcionApuesta{
 		
+		
 		//Obtiene la fecha actual del sistema para saber si se puede apostar
 		Calendar fechaActual = Calendar.getInstance();
 		fechaActual.getTime();
@@ -127,6 +134,12 @@ public class ControladorPartidos {
 					Apuesta nuevaApuesta = new Apuesta(login, idPartido, tApuesta,resultado,cantidadApostada,p.getEquipoL(),p.getEquipoV());
 					// Y la colecciona
 					listadoApuestas.add(nuevaApuesta);
+					try {
+						cu.realizarApuestaJugador(login, cantidadApostada, p.getEquipoL(), p.getEquipoV());
+					} catch (ExcepcionUsuario e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					break;
 				}
 			
