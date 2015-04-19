@@ -270,6 +270,7 @@ public class ControladorPartidos {
 	/**
 	 * Muestra partidos abiertos a apuestas
 	 * @return lista de los partidos abiertos a apuestas
+	 * @throws ExcepcionPartidos Si no hay partidos abiertos a apuesta
 	 */
 	public List<String> verPartidosAbiertosAApuesta() throws ExcepcionPartidos{
 		
