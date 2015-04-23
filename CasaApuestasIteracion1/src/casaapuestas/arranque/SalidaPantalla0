@@ -1,0 +1,76 @@
+===============================================
+PRUEBAS DE LA ITERACIÓN 0 - ESCENARIOS DE ÉXITO
+===============================================
+
+Creo tres jugadores, con identificadores 'edugom', 'mperez' y 'nadie'
+
+Listo los jugadores
+mperez: María Pérez Juárez
+edugom: Eduardo Gómez Sánchez
+nadie: Ninguna Persona
+
+Muestro los datos completos del jugador con identificador 'mperez'
+Usuario: mperez
+Clave: suclave
+Nombre: María
+Apellidos: Pérez Juárez
+NIF: 11111111B
+Número de móvil: 000000000
+Dirección de correo: mperez@tel.uva.es
+Método de mensajería: CORREO
+
+Modifico el nombre y el teléfono del jugador con identificador 'mperez'
+
+Vuelvo a mostrar los datos completos del jugador con identificador 'mperez', para comprobar la modificación
+Usuario: mperez
+Clave: suclave
+Nombre: María Ángeles
+Apellidos: Pérez Juárez
+NIF: 11111111B
+Número de móvil: 666777777
+Dirección de correo: mperez@tel.uva.es
+Método de mensajería: CORREO
+
+Elimino al jugador con identificador 'nadie'
+
+Listo los jugadores de nuevo, para comprobar la eliminación
+mperez: María Ángeles Pérez Juárez
+edugom: Eduardo Gómez Sánchez
+
+Ingreso diversas cantidades en las cuentas de los usuarios
+
+Retiro diversas cantidades de las cuentas de los usuarios
+
+Listo los movimientos de la cuenta del jugador con identificador 'edugom'
+100,00 euros, por 'Ingreso en efectivo por el usuario edugom', con fecha 12-mar-2015
+-20,55 euros, por 'Reintegro en efectivo por el usuario edugom', con fecha 12-mar-2015
+
+Muestro el saldo de la cuenta del jugador con identificador 'edugom'
+Saldo:79,45
+===============================================
+PRUEBAS DE LA ITERACIÓN 0 - ESCENARIOS DE FALLO
+===============================================
+
+Intento crear un jugador con identificador 'edugom'
+Ha fallado una operación sobre el usuario con identificador 'edugom', por la siguiente causa: YA_EXISTE
+
+Intento mostrar los datos del jugador identificador 'nadie'
+Ha fallado una operación sobre el usuario con identificador 'nadie', por la siguiente causa: NO_EXISTE
+
+Intento modificar los datos del jugador identificador 'nadie'
+Ha fallado una operación sobre el usuario con identificador 'nadie', por la siguiente causa: NO_EXISTE
+
+Intento eliminar al jugador con identificador 'nadie'
+Ha fallado una operación sobre el usuario con identificador 'nadie', por la siguiente causa: NO_EXISTE
+
+Intento ingresar una cantidad al jugador con identificador 'nadie'
+Ha fallado una operación sobre el usuario con identificador 'nadie', por la siguiente causa: NO_EXISTE
+
+Intento retirar una cantidad del jugador con identificador 'nadie'
+Ha fallado una operación sobre el usuario con identificador 'nadie', por la siguiente causa: NO_EXISTE
+
+Intento retirar más saldo del disponible de la cuenta del jugador con identificador 'edugom'
+Ha fallado una operación sobre al realizar un movimiento con concepto 'Reintegro en efectivo por el usuario edugom', por la siguiente causa: SALDO_INSUFICIENTE
+
+Intento listar los movimientos de la cuenta del jugador con identificador 'nadie'
+Ha fallado una operación sobre el usuario con identificador 'nadie', por la siguiente causa: NO_EXISTE
