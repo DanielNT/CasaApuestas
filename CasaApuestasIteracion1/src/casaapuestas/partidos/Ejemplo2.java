@@ -1,5 +1,5 @@
 package casaapuestas.partidos;
 
-public class ejemplo {
+public class Ejemplo2 {
 
 }
