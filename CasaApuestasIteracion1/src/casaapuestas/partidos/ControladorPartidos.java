@@ -43,7 +43,7 @@ public class ControladorPartidos {
 	}
 	
 	public void añadirPartido(int idPartido, String equipoL, String equipoV, int resultadoL, int resultadoV, ResultadoQuiniela resultadoQuin, String fInicApuesta, String hInicApuesta, String fInicPart, String hInicPart)
-			throws ExcepcionUsuario {
+			throws ExcepcionPartidos {
 		
 		// Comprueba si ya existe un partido con ese ID
 		if (!listaPartidos.containsKey(idPartido)) {
@@ -53,7 +53,7 @@ public class ControladorPartidos {
 			listaPartidos.put(idPartido, p);
 		} else {
 			// Pero si ya existía lanza una excepción
-			throw new ExcepcionUsuario(CausaExcepcionUsuario.YA_EXISTE, "Error al crear: "+ idPartido);
+			throw new ExcepcionPartidos(CausaExcepcionPartidos.YA_EXISTE_P, idPartido);
 		}
 	}
 
