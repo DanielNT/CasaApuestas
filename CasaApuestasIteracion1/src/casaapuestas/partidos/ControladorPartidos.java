@@ -18,6 +18,9 @@ public class ControladorPartidos {
 	private int idPartido;
 	private Map<Integer, Partido> listaPartidos;
 	
+	/**
+	 * Constructor que inicializa las colecciones
+	 */
 	public ControladorPartidos(){
 		super();
 		listaPartidos = new HashMap<Integer, Partido>();
@@ -25,7 +28,10 @@ public class ControladorPartidos {
 	}
 	
 	
-	public List<String> listaPartidos() {
+	/**
+	 * @return
+	 */
+	public List<String> listarPartidos() {
 		
 		List<String> listado = new ArrayList<String>();
 		
@@ -37,11 +43,29 @@ public class ControladorPartidos {
 		return listado;
 	}
 	
+	/**
+	 * Muestra la información del partido para el ID indicado
+	 * @param idPartido
+	 * @return
+	 */
 	public String mostrarPartido(int idPartido) {
 		Partido estePartido = listaPartidos.get(idPartido);
 		return estePartido.verInfoCompleta();
 	}
 	
+	/**
+	 * @param idPartido
+	 * @param equipoL
+	 * @param equipoV
+	 * @param resultadoL
+	 * @param resultadoV
+	 * @param resultadoQuin
+	 * @param fInicApuesta
+	 * @param hInicApuesta
+	 * @param fInicPart
+	 * @param hInicPart
+	 * @throws ExcepcionPartidos
+	 */
 	public void añadirPartido(int idPartido, String equipoL, String equipoV, int resultadoL, int resultadoV, ResultadoQuiniela resultadoQuin, String fInicApuesta, String hInicApuesta, String fInicPart, String hInicPart)
 			throws ExcepcionPartidos {
 		
