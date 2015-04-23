@@ -37,7 +37,6 @@ public class ControladorPartidos {
 		return listado;
 	}
 	
-//COMENTARIO github
 	public String mostrarPartido(int idPartido) {
 		Partido estePartido = listaPartidos.get(idPartido);
 		return estePartido.verInfoCompleta();
