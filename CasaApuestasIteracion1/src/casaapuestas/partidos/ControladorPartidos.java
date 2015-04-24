@@ -116,5 +116,27 @@ public class ControladorPartidos {
 			throw new ExcepcionPartidos(CausaExcepcionPartidos.YA_EXISTE_P, idPartido);
 		}
 	}
+	
+	/**
+	 * Elimina un partido del listado según el ID
+	 * 
+	 * @param idPartido El ID del partido que vamos a eliminar
+	 * @throws ExcepcionPartidos lanza una excepción si ha habido un error al eliminar el partido
+	 */
+	public void eliminarPartido(int idPartido) throws ExcepcionPartidos{
+		
+		Partido p = listaPartidos.get(idPartido);
+		
+		//Si existe el partido con ese ID, lo elimina de la lista
+		 if (listaPartidos.containsKey(idPartido)){ 
+			 listaPartidos.remove(idPartido,p);
+	     }
+		 else{
+			 throw new ExcepcionPartidos(CausaExcepcionPartidos.ERROR_ELIMINAR, idPartido);
+		 }
+		 
+	
+		
+	}
 
 }

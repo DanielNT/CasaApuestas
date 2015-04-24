@@ -6,6 +6,7 @@ package casaapuestas.partidos;
  */
 public enum CausaExcepcionPartidos {
 	YA_EXISTE_P,
-	NO_EXISTE
+	NO_EXISTE,
+	ERROR_ELIMINAR
 	
 }
