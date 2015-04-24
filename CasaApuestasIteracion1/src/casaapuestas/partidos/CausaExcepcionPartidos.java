@@ -1,7 +1,7 @@
 package casaapuestas.partidos;
 
 /**
- * @author Daniel
+ * @author iss002
  *
  */
 public enum CausaExcepcionPartidos {

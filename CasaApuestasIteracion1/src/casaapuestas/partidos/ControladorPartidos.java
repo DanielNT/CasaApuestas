@@ -27,9 +27,10 @@ public class ControladorPartidos {
 	
 	}
 	
-	
 	/**
-	 * @return
+	 * Crea un nuevo listado con los partidos
+	 * 
+	 * @return el listado
 	 */
 	public List<String> listarPartidos() {
 		
@@ -45,26 +46,61 @@ public class ControladorPartidos {
 	
 	/**
 	 * Muestra la información del partido para el ID indicado
+	 * 
 	 * @param idPartido
-	 * @return
+	 * @return la información completa del partido
 	 */
 	public String mostrarPartido(int idPartido) {
 		Partido estePartido = listaPartidos.get(idPartido);
 		return estePartido.verInfoCompleta();
 	}
 	
+	
 	/**
-	 * @param idPartido
-	 * @param equipoL
-	 * @param equipoV
-	 * @param resultadoL
-	 * @param resultadoV
-	 * @param resultadoQuin
-	 * @param fInicApuesta
-	 * @param hInicApuesta
-	 * @param fInicPart
-	 * @param hInicPart
-	 * @throws ExcepcionPartidos
+	 * Modifica los parámetros del partido introducidos
+	 * 
+	 * @param idPartido El ID del partido
+	 * @param equipoL Equipo local
+	 * @param equipoV Equipo visitante
+	 * @param resultadoL El resultado del equipo local
+	 * @param resultadoV El resultado del equipo visitante
+	 * @param resultadoQuin El resultado en modo quiniela
+	 * @param fInicApuesta La fecha de inicio de la apuesta
+	 * @param hInicApuesta La hora de inicio de la apuesta
+	 * @param fInicPart La fecha de inicio del partido
+	 * @param hInicPart La hora de inicio del partido
+	 */
+	public void modificarPartido(int idPartido, String equipoL, String equipoV, int resultadoL, int resultadoV, ResultadoQuiniela resultadoQuin, String fInicApuesta, String hInicApuesta, String fInicPart, String hInicPart){
+		
+		Partido estePartido = listaPartidos.get(idPartido);
+		if (estePartido != null) {
+			estePartido.setEquipoL(equipoL);
+			estePartido.setEquipoV(equipoV);
+			estePartido.setResultadoL(resultadoL);
+			estePartido.setResultadoV(resultadoV);
+			estePartido.setResultadoQuin(resultadoQuin);
+			estePartido.setfInicApuesta(fInicApuesta);
+			estePartido.sethInicApuesta(hInicApuesta);
+			estePartido.setfInicPart(fInicPart);
+			estePartido.sethInicPart(hInicPart);
+			//estePartido.setMetodo(metodo);
+		}
+	}
+	
+	
+	/**
+	 * Añade un partido a la lista
+	 * @param idPartido El ID del partido
+	 * @param equipoL Equipo local
+	 * @param equipoV Equipo visitante
+	 * @param resultadoL El resultado del equipo local
+	 * @param resultadoV El resultado del equipo visitante
+	 * @param resultadoQuin El resultado en modo quiniela
+	 * @param fInicApuesta La fecha de inicio de la apuesta
+	 * @param hInicApuesta La hora de inicio de la apuesta
+	 * @param fInicPart La fecha de inicio del partido
+	 * @param hInicPart La hora de inicio del partido
+	 * @throws ExcepcionPartidos Envía una excepción si en la creación de partidos algo sale mal
 	 */
 	public void añadirPartido(int idPartido, String equipoL, String equipoV, int resultadoL, int resultadoV, ResultadoQuiniela resultadoQuin, String fInicApuesta, String hInicApuesta, String fInicPart, String hInicPart)
 			throws ExcepcionPartidos {
