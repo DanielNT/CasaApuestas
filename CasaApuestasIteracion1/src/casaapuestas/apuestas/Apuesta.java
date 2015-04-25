@@ -1,9 +1,14 @@
 package casaapuestas.apuestas;
 
+import casaapuestas.partidos.Partido;
 import casaapuestas.partidos.ResultadoQuiniela;
 
 
 
+/**
+ * @author iss002
+ *
+ */
 public class Apuesta {
 	
 	private float cantidadApostada;
@@ -36,11 +41,30 @@ public class Apuesta {
 		this.rQuiniela = rQuiniela;
 	}
 	
+	public String verApuesta() {
+		String datosApuesta = idPartido + ": " + equipoLocal + "-" + equipoVisitante + " " + " Resultado quiniela "+ rQuiniela ;
+		return datosApuesta;
+	}
+	
+	
 	
 	/**
-	 * @author iss002
-	 *
+	 * Obtiene el identificador apuesta
+	 * @return El identificador de apuesta
 	 */
+	public int getIdApuesta() {
+		return idPartido;
+	}
+
+	/**
+	 * @param login the login to set
+	 */
+	public void setIdApuesta(int idPartido) {
+		this.idPartido= idPartido;
+	}
+
+
+
 	public enum tipoApuesta{
 		/**
 		 * Si es del tipo resultado (numérico)

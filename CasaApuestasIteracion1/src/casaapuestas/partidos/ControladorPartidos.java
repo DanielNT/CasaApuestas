@@ -134,5 +134,21 @@ public class ControladorPartidos {
 		 }
 		 
 	}
+	
+// 							¿MISMO CÓDIGO? Es necesario esta función a listarPartidos
+//
+//	public List<String> verPartidos(){
+//		
+//		List<String> listado = new ArrayList<String>();
+//		
+//		for (Partido p : listaPartidos.values()) {
+//			String ficha = p.verInfoPartido();
+//			listado.add(ficha);
+//		}
+//		
+//		
+//		return listado;
+//	}
+	
 
 }
