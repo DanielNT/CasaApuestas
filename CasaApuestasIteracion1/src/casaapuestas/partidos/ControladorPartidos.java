@@ -15,14 +15,13 @@ import java.util.Locale;
 public class ControladorPartidos {
 	
 	
-	private int idPartido;
 	private Map<Integer, Partido> listaPartidos;
 	
 	/**
 	 * Constructor que inicializa las colecciones
 	 */
 	public ControladorPartidos(){
-		super();
+
 		listaPartidos = new HashMap<Integer, Partido>();
 	
 	}
@@ -134,8 +133,6 @@ public class ControladorPartidos {
 			 throw new ExcepcionPartidos(CausaExcepcionPartidos.ERROR_ELIMINAR, idPartido);
 		 }
 		 
-	
-		
 	}
 
 }
