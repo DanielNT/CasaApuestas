@@ -19,7 +19,7 @@ public class Equipo {
 	/**
 	 * Constructor del equipo
 	 * 
-	 * @param nombreEquipo
+	 * @param nombreEquipo nombre del equipo
 	 */
 	public Equipo(String nombreEquipo){
 		

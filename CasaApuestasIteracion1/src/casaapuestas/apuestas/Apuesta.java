@@ -15,6 +15,17 @@ public class Apuesta {
 	private String equipoVisitante;
 	
 	
+	/**
+	 * Constructor de la clase apuesta
+	 * 
+	 * @param cantidadApostada La cantidad apostada
+	 * @param login El login del jugador
+	 * @param tApuesta El tipo de apuesta
+	 * @param rQuiniela El resultado obtenido en modo quiniela
+	 * @param idPartido El identificador del partido
+	 * @param equipoLocal El nombre del equipo local
+	 * @param equipoVisitante El nombre del equipo visitante
+	 */
 	public Apuesta(float cantidadApostada,String login,tipoApuesta tApuesta, ResultadoQuiniela rQuiniela,int idPartido, String equipoLocal, String equipoVisitante){
 		
 		this.cantidadApostada= cantidadApostada;
