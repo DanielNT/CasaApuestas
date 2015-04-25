@@ -11,25 +11,39 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-@SuppressWarnings("unused")
+
 public class Equipo {
 	
 	private String nombre;
 	
+	/**
+	 * Constructor del equipo
+	 * 
+	 * @param nombreEquipo
+	 */
 	public Equipo(String nombreEquipo){
 		
 		this.nombre = nombreEquipo;
-		
 	}
 	
-	
-	
-	
+	/**
+	 * Muestra la información básica del equipo
+	 * 
+	 * @return lo que pongamos
+	 */
 	public String verInfoEquipo() {
+		
 		return nombre;
 	}
 
+	/**
+	 * Muestra la información completa del equipo
+	 * 
+	 * @return lo que pongamos
+	 */
 	public String verInfoCompleta() {
+		
 		return nombre;
 	}
+	
 }
