@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.Locale;
 
 
-
+//Falta modificar (commit de ejemplo)
 
 public class ControladorEquipos {
 	
