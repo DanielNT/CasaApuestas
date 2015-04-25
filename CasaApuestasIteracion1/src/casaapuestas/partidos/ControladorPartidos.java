@@ -83,7 +83,6 @@ public class ControladorPartidos {
 			estePartido.sethInicApuesta(hInicApuesta);
 			estePartido.setfInicPart(fInicPart);
 			estePartido.sethInicPart(hInicPart);
-			//estePartido.setMetodo(metodo);
 		}
 	}
 	
