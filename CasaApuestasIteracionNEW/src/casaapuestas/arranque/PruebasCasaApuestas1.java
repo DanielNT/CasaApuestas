@@ -105,15 +105,15 @@ public class PruebasCasaApuestas1 {
 			System.out.println("\nMuestro el partido con identificador 'p2'");
 			ficha = cp.mostrarPartido("p2");
 			System.out.println(ficha);
-//
-//			//Caso de uso "modificar partido"
-//			System.out.println("\nModifico el partido con identificador 'p2'");
-//			cp.modificarPartido("p2", "Burgos", "Zamora", inicioApuestas2, finApuestas2);
-//
-//			//Caso de uso "ver partido"
-//			System.out.println("\nMuestro el partido con identificador 'p2', para comprobar la modificación");
-//			ficha = cp.mostrarPartido("p2");
-//			System.out.println(ficha);
+
+			//Caso de uso "modificar partido"
+			System.out.println("\nModifico el partido con identificador 'p2'");
+			cp.modificarPartido("p2", "Burgos", "Zamora", inicioApuestas2, finApuestas2);
+
+			//Caso de uso "ver partido"
+			System.out.println("\nMuestro el partido con identificador 'p2', para comprobar la modificación");
+			ficha = cp.mostrarPartido("p2");
+			System.out.println(ficha);
 //			
 //			//Caso de uso "eliminar partido"
 //			System.out.println("\nElimino el partido con identificador 'p2'");

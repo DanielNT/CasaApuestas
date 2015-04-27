@@ -70,21 +70,6 @@ public class ControladorPartidos {
 	}
 	
 	
-	/**
-	 * Modifica los parámetros del partido introducidos
-	 * 
-	 * @param idPartido El ID del partido
-	 * @param equipoL Equipo local
-	 * @param equipoV Equipo visitante
-	 * @param resultadoL El resultado del equipo local
-	 * @param resultadoV El resultado del equipo visitante
-	 * @param resultadoQuin El resultado en modo quiniela
-	 * @param fInicApuesta La fecha de inicio de la apuesta
-	 * @param hInicApuesta La hora de inicio de la apuesta
-	 * @param fInicPart La fecha de inicio del partido
-	 * @param hInicPart La hora de inicio del partido
-	 */
-
 	
 	public void añadirPartido(String equipoL, String equipoV, Calendar fInicApuesta, Calendar fFinApuesta) {
 		
@@ -110,7 +95,7 @@ public class ControladorPartidos {
 	 * @param idPartido El ID del partido que vamos a eliminar
 	 * @throws ExcepcionPartidos lanza una excepción si ha habido un error al eliminar el partido
 	 */
-	public void eliminarPartido(int idPartido) throws ExcepcionPartidos{
+	public void eliminarPartido(String idPartido) throws ExcepcionPartidos{
 		
 		Partido p = listaPartidos.get(idPartido);
 		
@@ -135,7 +120,7 @@ public class ControladorPartidos {
 			listaEquipos.put(nombre, nuevoEquipo);
 		} else {
 			// Pero si ya existía lanza una excepción
-			 throw new ExcepcionPartidos(CausaExcepcionPartidos.YA_EXISTE_E, -1);
+			 throw new ExcepcionPartidos(CausaExcepcionPartidos.YA_EXISTE_E, nombre);
 		}
 	}
 		
@@ -146,6 +131,22 @@ public class ControladorPartidos {
 		return esteEquipo.verInfoCompleta();
 	}
 		
+	public void modificarPartido(String idPartido, String equipoL, String equipoV, Calendar fInicApuesta, Calendar fFinApuesta)
+			throws ExcepcionPartidos {
+		
+		// Recupera la instancia de la colección
+		Partido estePartido = listaPartidos.get(idPartido);
+		// Si este jugador existía, no es null
+		if (estePartido != null) {
+			// Modifica uno a uno los otros atributos
+			estePartido.setfInicApuesta(fInicApuesta);
+			estePartido.setfFinApuesta(fFinApuesta);
+			
+		} else {
+			// Pero si no existía lanza una excepción
+			throw new ExcepcionPartidos(CausaExcepcionPartidos.NO_EXISTE, idPartido);
+		}
+	}
 		
 	
 

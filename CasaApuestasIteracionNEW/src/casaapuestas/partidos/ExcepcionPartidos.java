@@ -10,7 +10,7 @@ public class ExcepcionPartidos extends Exception {
 	/** Las clases que derivan de Exception deben tener un atributo como este. */
 	private static final long serialVersionUID = 1L;
 	/** El login usado en la operación que ha dado lugar a la excecpción */
-	private int idPartido;
+	private String idPartido;
 	/** La causa de la excecpción */
 	private CausaExcepcionPartidos causa;
 
@@ -20,7 +20,7 @@ public class ExcepcionPartidos extends Exception {
 	 * @param causa la causa de la excepción
 	 * @param login el identificador de usuario usado en la operación que ha causado la excepción
 	 */
-	public ExcepcionPartidos(CausaExcepcionPartidos causa, int idPartido) {
+	public ExcepcionPartidos(CausaExcepcionPartidos causa, String idPartido) {
 		super();
 		// Asigna los parámetros
 		this.causa = causa;
@@ -32,7 +32,7 @@ public class ExcepcionPartidos extends Exception {
 	 * 
 	 * @return el login
 	 */
-	public int getIdPartido() {
+	public String getIdPartido() {
 		return idPartido;
 	}
 

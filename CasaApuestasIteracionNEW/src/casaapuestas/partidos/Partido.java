@@ -223,6 +223,16 @@ public class Partido {
 	public Calendar getfFinApuesta() {
 		return fFinApuesta;
 	}
+	
+	
+	/**
+	 * @param fFinApuesta
+	 */
+	
+	public void setfFinApuesta(Calendar fFinApuesta) {
+		this.fFinApuesta = fFinApuesta;
+	}
+
 }
 
 
