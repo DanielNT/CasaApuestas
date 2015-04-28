@@ -1,0 +1,61 @@
+Mi salida (a fecha 19 de abril en el ordenador)
+
+===============================================
+PRUEBAS DE LA ITERACIÓN 1 - ESCENARIOS DE ÉXITO
+===============================================
+
+Creo seis equipos
+
+Listo los partidos existentes
+Mirandés
+Ponferradina
+Valladolid
+Salamanca
+Zamora
+Burgos
+
+Muestro los datos completos del equipo con identificador 'Zamora'
+Zamora Club de Fútbol
+
+Creo tres partidos
+
+Listo los partidos existentes
+Partido p0: Valladolid-Salamanca
+Partido p1: Mirandés-Ponferradina
+Partido p2: Burgos-Zamora
+
+Muestro el partido con identificador 'p2'
+Partido p2: Burgos-Zamora(admite apuestas entre 17-abr-2015 8:00:00 y 19-abr-2015 19:30:00)
+
+Modifico el partido con identificador 'p2'
+
+Muestro el partido con identificador 'p2', para comprobar la modificación
+Partido p2: Burgos-Zamora(admite apuestas entre 24-abr-2015 8:00:00 y 26-abr-2015 19:30:00)
+
+Elimino el partido con identificador 'p2'
+
+Listo los partidos existentes, para comprobar la eliminación
+Partido p0: Valladolid-Salamanca
+Partido p1: Mirandés-Ponferradina
+
+Creo un partido adicional, pero admitiendo apuestas una semana más tarde
+
+Muestro el partido con identificador 'p3', recién creado
+Partido p3: Burgos-Zamora(admite apuestas entre 24-abr-2015 8:00:00 y 26-abr-2015 19:30:00)
+
+Listo los partidos que admiten apuestas (sólo deberían salir dos)
+Partido p0: Valladolid-Salamanca
+Partido p1: Mirandés-Ponferradina
+
+Creo dos apuestas de 'marcador' y dos apuestas de 'quiniela' sobre el partido con identificador 'p0'
+
+Listo las apuestas realizadas sobre el partido con identificador 'p0'
+La apuesta de tipo MARCADOR: El jugador 'edugom' ha apostado 20.0 al resultado '1-1' en el partido Valladolid-Salamanca
+La apuesta de tipo MARCADOR: El jugador 'mperez' ha apostado 10.0 al resultado '2-1' en el partido Valladolid-Salamanca
+La apuesta de tipo QUINIELA: El jugador 'edugom' ha apostado 15.0 al resultado '2' en el partido Valladolid-Salamanca
+La apuesta de tipo QUINIELA: El jugador 'mperez' ha apostado 8.5 al resultado 'X' en el partido Valladolid-Salamanca
+
+Listo los movimientos de la cuenta del jugador con identificador 'edugom' para comprobar que se han anotado sus apuestas
+100,00 euros, por 'Ingreso en efectivo por el usuario edugom', con fecha 19-abr-2015
+-20,00 euros, por 'Pago de apuesta sobre Valladolid-Salamanca', con fecha 19-abr-2015
+-15,00 euros, por 'Pago de apuesta sobre Valladolid-Salamanca', con fecha 19-abr-2015
