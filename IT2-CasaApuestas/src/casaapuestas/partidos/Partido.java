@@ -1,17 +1,12 @@
 package casaapuestas.partidos;
 
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import casaapuestas.apuestas.*;
-import casaapuestas.arranque.*;
-import casaapuestas.cuentas.*;
-import casaapuestas.equipos.*;
-import casaapuestas.usuarios.*;
+import casaapuestas.apuestas.ContenedorApuestas;
+import casaapuestas.apuestas.TipoApuesta;
 
 
 
@@ -20,7 +15,7 @@ import casaapuestas.usuarios.*;
  * @author Iss002
  * Clase que representa a un Partido en la casa de apuestas.
  */
-@SuppressWarnings("deprecation")
+
 public class Partido {
 	
 	private String idPartido;
@@ -28,22 +23,20 @@ public class Partido {
 	private String equipoV;
 	private Calendar fInicApuesta;
 	private Calendar fFinApuesta;
-	private Map<TipoApuesta, ContenedorApuestas> listaContenedorApuestas;
-	private Map<TipoApuesta, String> listaResultados;
+	private Map<TipoApuesta, ContenedorApuestas> listaContenedorApuestas = new HashMap<TipoApuesta, ContenedorApuestas>();;
+	private Map<TipoApuesta, String> listaResultados= new HashMap<TipoApuesta, String>();;
+	
+	
 	
 
-	
 	/**
 	 * Constructor que inicializa el partido con todos los parámetros
 	 * 
 	 * @param idPartido El ID del partido
-	 * @param equipoL Equipo local
-	 * @param equipoV Equipo visitante
-	 * @param resultadoL El resultado del equipo local
-	 * @param resultadoV El resultado del equipo visitante
-	 * @param resultadoQuin El resultado en modo quiniela
-	 * @param fInicioApuesta La fecha de inicio de la apuesta
-	 * @param fFinApuesta La fecha de fin de la apuesta
+	 * @param equipoL El nombre del equipo local
+	 * @param equipoV El nombre del equipo visitante
+	 * @param fInicioApuesta La fecha de inicio de las apuestas
+	 * @param fFinApuesta La fecha del final de las apuestas
 	 */
 	
 	public Partido(String idPartido, String equipoL, String equipoV, Calendar fInicioApuesta, Calendar fFinApuesta){
@@ -54,8 +47,6 @@ public class Partido {
 		this.equipoV = equipoV;
 		this.fInicApuesta = fInicioApuesta;
 		this.fFinApuesta = fFinApuesta;
-		listaContenedorApuestas = new HashMap<TipoApuesta, ContenedorApuestas>();
-		listaResultados = new HashMap<TipoApuesta, String>();
 	
 		
 	}
@@ -75,6 +66,7 @@ public class Partido {
 	 * Muestra toda la información del partido
 	 * @return la ficha completa
 	 */
+	
 	public String verInfoCompleta() {
 		String ficha = "Partido " + idPartido + ": " + equipoL + "-" + equipoV + "(admite apuestas entre " + fInicApuesta.getTime().toLocaleString() + " y " + fFinApuesta.getTime().toLocaleString() + ")";
 		return ficha;

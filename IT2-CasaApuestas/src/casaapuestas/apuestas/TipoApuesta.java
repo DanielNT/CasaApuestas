@@ -20,6 +20,6 @@ public enum TipoApuesta{
 	/**
 	 * Especifica que el tipo de apuesta va a ser de tipo corner, es decir, un resultado de tipo '1', 'X' o '2' que determina el equipo con mayor número de saques de esquina en el partido o empate.
 	 */
-	CORNER
+	CORNERS
 }
 	

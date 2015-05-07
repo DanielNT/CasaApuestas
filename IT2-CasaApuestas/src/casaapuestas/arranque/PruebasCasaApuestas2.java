@@ -108,7 +108,7 @@ public class PruebasCasaApuestas2 {
 			// Función de listar, limitando el listado a los partidos que admiten apuestas, necesaria en "crear apuesta"
 			//NOTA: para que esto funcione hay que "trucar" el sistema de manera que crea que la fecha actual está en medio del intervalo en el que se admiten apuestas
 			System.out.println("\nListo los partidos que admiten apuestas (sólo deberían salir tres)");
-			List<String> listado = cp.listarPartidosAbiertos();
+			List<String> listado = cp.verPartidosAbiertosAApuesta();
 			for(String s : listado) {
 				System.out.println(s);
 			}

@@ -3,17 +3,14 @@ package casaapuestas.partidos;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import casaapuestas.apuestas.*;
-import casaapuestas.arranque.*;
-import casaapuestas.cuentas.*;
-import casaapuestas.equipos.*;
-import casaapuestas.usuarios.*;
+import casaapuestas.apuestas.TipoApuesta;
+import casaapuestas.equipos.CausaExcepcionEquipo;
+import casaapuestas.equipos.Equipo;
+import casaapuestas.equipos.ExcepcionEquipo;
+import casaapuestas.usuarios.ControladorUsuarios;
 
 /**
  * Controlador de partidos, integra el de apuestas y el de equipos
@@ -342,11 +339,29 @@ public class ControladorPartidos {
 		
 		// |------------------------------|
 		
+		public List<String> listarApuestasPartido(String idPartido){
+			
+			List<String> listadoApuestasPartido = new ArrayList<String>();
+			
+			
+			
+			
+			
+			return listadoApuestasPartido;
+		}
 		
+		public void nuevaApuesta(String login, String idPartido, TipoApuesta tApuesta, String resultado,float cantidadApostada){
+			
+		}
 		
+		public void pagarApuestasPartido(String idPartido, TipoApuesta tApuesta){
+			
+		}
 		
-		
-		
+		public void fijarResultadoPartido(String idPartido, TipoApuesta tApuesta, String resultado){
+	
+		}
+	
 		
 		
 		

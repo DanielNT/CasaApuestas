@@ -1,13 +1,5 @@
 package casaapuestas.usuarios;
 
-
-import casaapuestas.apuestas.*;
-import casaapuestas.arranque.*;
-import casaapuestas.cuentas.*;
-import casaapuestas.equipos.*;
-import casaapuestas.partidos.*;
-
-
 /**
  * Clase abstracta de la que derivan el resto de los usuarios. Tiene los atributos comunes a todos ellos, y métodos <i>getter</i> y <i>setter</i>.
  * 
