@@ -1,0 +1,125 @@
+
+Creo seis equipos
+
+Creo tres partidos
+===============================================
+PRUEBAS DE LA ITERACIÓN 2 - ESCENARIOS DE ÉXITO
+===============================================
+
+Listo los partidos que admiten apuestas (sólo deberían salir tres)
+Partido p2: Burgos-Zamora
+Partido p1: Mirandés-Ponferradina
+Partido p0: Valladolid-Salamanca
+
+Creo apuestas de 'marcador' sobre el partido con identificador 'p0'. En total se apuestan 100 euros en esta modalidad y este partido.
+
+Creo apuestas de 'quiniela' sobre el partido con identificador 'p0'. En total se apuestan 50 euros en esta modalidad y este partido.
+
+Creo apuestas de 'corners' sobre el partido con identificador 'p0'. En total se apuestan 50 euros en esta modalidad y este partido.
+
+Creo apuestas de 'marcador' sobre el partido con identificador 'p1' para comprobar que se separa bien lo apostado en cada partido. En total se apuestan 20 euros en esta modalidad y este partido.
+
+Listo las apuestas realizadas sobre el partido con identificador 'p0'. Deberían salir 7 de 'marcador', 6 de 'quiniela' y 5 de 'corners'
+Apuesta de tipo CORNERS: El jugador 'jugador0' ha apostado 23,00 al resultado 'X' en el partido Valladolid-Salamanca
+Apuesta de tipo CORNERS: El jugador 'jugador2' ha apostado 17,00 al resultado '1' en el partido Valladolid-Salamanca
+Apuesta de tipo CORNERS: El jugador 'jugador4' ha apostado 2,00 al resultado 'X' en el partido Valladolid-Salamanca
+Apuesta de tipo CORNERS: El jugador 'jugador6' ha apostado 3,00 al resultado '2' en el partido Valladolid-Salamanca
+Apuesta de tipo CORNERS: El jugador 'jugador8' ha apostado 5,00 al resultado '1' en el partido Valladolid-Salamanca
+Apuesta de tipo QUINIELA: El jugador 'jugador8' ha apostado 10,00 al resultado '2' en el partido Valladolid-Salamanca
+Apuesta de tipo QUINIELA: El jugador 'jugador7' ha apostado 8,00 al resultado 'X' en el partido Valladolid-Salamanca
+Apuesta de tipo QUINIELA: El jugador 'jugador6' ha apostado 2,00 al resultado 'X' en el partido Valladolid-Salamanca
+Apuesta de tipo QUINIELA: El jugador 'jugador5' ha apostado 10,00 al resultado '1' en el partido Valladolid-Salamanca
+Apuesta de tipo QUINIELA: El jugador 'jugador4' ha apostado 8,00 al resultado '2' en el partido Valladolid-Salamanca
+Apuesta de tipo QUINIELA: El jugador 'jugador3' ha apostado 12,00 al resultado '1' en el partido Valladolid-Salamanca
+Apuesta de tipo MARCADOR: El jugador 'jugador0' ha apostado 30,00 al resultado '1-1' en el partido Valladolid-Salamanca
+Apuesta de tipo MARCADOR: El jugador 'jugador1' ha apostado 10,00 al resultado '2-1' en el partido Valladolid-Salamanca
+Apuesta de tipo MARCADOR: El jugador 'jugador2' ha apostado 5,00 al resultado '0-1' en el partido Valladolid-Salamanca
+Apuesta de tipo MARCADOR: El jugador 'jugador3' ha apostado 8,00 al resultado '0-0' en el partido Valladolid-Salamanca
+Apuesta de tipo MARCADOR: El jugador 'jugador4' ha apostado 12,00 al resultado '1-2' en el partido Valladolid-Salamanca
+Apuesta de tipo MARCADOR: El jugador 'jugador5' ha apostado 15,00 al resultado '2-1' en el partido Valladolid-Salamanca
+Apuesta de tipo MARCADOR: El jugador 'jugador6' ha apostado 20,00 al resultado '1-1' en el partido Valladolid-Salamanca
+
+Listo los movimientos de la cuenta del jugador con identificador 'jugador6' para comprobar que se han anotado sus apuestas
+100,00 euros, por 'Ingreso en efectivo por el usuario jugador6', con fecha 06-may-2015
+-20,00 euros, por 'Pago de apuesta sobre Valladolid-Salamanca', con fecha 06-may-2015
+-2,00 euros, por 'Pago de apuesta sobre Valladolid-Salamanca', con fecha 06-may-2015
+-3,00 euros, por 'Pago de apuesta sobre Valladolid-Salamanca', con fecha 06-may-2015
+
+Introduzco resultados en las distintas modalidades para el partido 'p0'
+
+Pago las apuestas de todas las modalidades para el partido 'p0'
+
+Listo los movimientos de la cuenta del jugador con identificador 'jugador0' para comprobar que ha cobrado bien sus premios
+100,00 euros, por 'Ingreso en efectivo por el usuario jugador0', con fecha 06-may-2015
+-30,00 euros, por 'Pago de apuesta sobre Valladolid-Salamanca', con fecha 06-may-2015
+-23,00 euros, por 'Pago de apuesta sobre Valladolid-Salamanca', con fecha 06-may-2015
+-15,00 euros, por 'Pago de apuesta sobre Mirandés-Ponferradina', con fecha 06-may-2015
+48,00 euros, por 'Cobro de premio de apuesta sobre Valladolid-Salamanca', con fecha 06-may-2015
+
+Listo los movimientos de la cuenta del jugador con identificador 'jugador6' para comprobar que ha cobrado bien sus premios
+100,00 euros, por 'Ingreso en efectivo por el usuario jugador6', con fecha 06-may-2015
+-20,00 euros, por 'Pago de apuesta sobre Valladolid-Salamanca', con fecha 06-may-2015
+-2,00 euros, por 'Pago de apuesta sobre Valladolid-Salamanca', con fecha 06-may-2015
+-3,00 euros, por 'Pago de apuesta sobre Valladolid-Salamanca', con fecha 06-may-2015
+32,00 euros, por 'Cobro de premio de apuesta sobre Valladolid-Salamanca', con fecha 06-may-2015
+8,00 euros, por 'Cobro de premio de apuesta sobre Valladolid-Salamanca', con fecha 06-may-2015
+40,00 euros, por 'Cobro de premio de apuesta sobre Valladolid-Salamanca', con fecha 06-may-2015
+
+Listo los movimientos de la cuenta del jugador con identificador 'jugador7' para comprobar que ha cobrado bien su premio
+100,00 euros, por 'Ingreso en efectivo por el usuario jugador7', con fecha 06-may-2015
+-8,00 euros, por 'Pago de apuesta sobre Valladolid-Salamanca', con fecha 06-may-2015
+32,00 euros, por 'Cobro de premio de apuesta sobre Valladolid-Salamanca', con fecha 06-may-2015
+===============================================
+PRUEBAS DE LA ITERACIÓN 1 - ESCENARIOS DE FALLO
+===============================================
+
+Intento crear un equipo con un identificador 'Valladolid'
+Ha fallado una operación sobre el equipo con identificador 'Valladolid', por la siguiente causa: YA_EXISTE
+
+Intento mostrar los datos del equipo 'Telecos'
+Ha fallado una operación sobre el equipo con identificador 'Telecos', por la siguiente causa: NO_EXISTE
+
+Intento crear un partido con las fechas en orden inverso
+Ha fallado una operación sobre el partido con identificador '<ninguno>', por la siguiente causa: FECHAS_INCORRECTAS
+
+Intento crear un partido con equipos que no existen
+Ha fallado una operación sobre el equipo con identificador 'Telecos', por la siguiente causa: NO_EXISTE
+
+Intento modificar un partido con las fechas en orden inverso
+Ha fallado una operación sobre el partido con identificador 'p1', por la siguiente causa: FECHAS_INCORRECTAS
+
+Intento modificar un partido con equipos que no existen
+Ha fallado una operación sobre el equipo con identificador 'Telecos', por la siguiente causa: NO_EXISTE
+
+Intento mostrar el partido con identificador 'ninguno'
+Ha fallado una operación sobre el partido con identificador 'ninguno', por la siguiente causa: NO_EXISTE
+
+Intento modificar el partido con identificador 'ninguno'
+Ha fallado una operación sobre el partido con identificador 'ninguno', por la siguiente causa: NO_EXISTE
+
+Intento eliminar el partido con identificador 'ninguno'
+Ha fallado una operación sobre el partido con identificador 'ninguno', por la siguiente causa: NO_EXISTE
+
+Intento crear una apuesta sobre el partido con identificador 'ninguno'
+Ha fallado una operación sobre el partido con identificador 'ninguno', por la siguiente causa: NO_EXISTE
+
+Intento crear una apuesta sobre un partido que no acepta apuestas hasta la semana siguiente
+Ha fallado una operación sobre el partido con identificador 'p3', por la siguiente causa: PARTIDO_CERRADO
+
+Intento crear una apuesta por 500 euros de un jugador que menos
+Ha fallado una operación de apuestas por la siguiente causa: USUARIO_SIN_FONDOS
+===============================================
+PRUEBAS DE LA ITERACIÓN 2 - ESCENARIOS DE FALLO
+===============================================
+
+Intento fijar un resultado sobre el partido 'p3'
+Ha fallado una operación sobre el partido con identificador 'p3', por la siguiente causa: PARTIDO_ABIERTO
+
+Intento fijar un resultado sobre el partido 'p0'
+Ha fallado una operación de apuestas por la siguiente causa: APUESTAS_YA_PAGADAS
+
+Intento volver a pagar las apuestas de 'marcador' del partido 'p0'
+Ha fallado una operación de apuestas por la siguiente causa: APUESTAS_YA_PAGADAS
+
+Intento pagar las apuestas de 'marcador' del partido 'p1'
+Ha fallado una operación de apuestas por la siguiente causa: APUESTAS_NO_PAGABLES

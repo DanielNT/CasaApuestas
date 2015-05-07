@@ -1,0 +1,98 @@
+===============================================
+PRUEBAS DE LA ITERACIÓN 1 - ESCENARIOS DE ÉXITO
+===============================================
+
+Creo seis equipos
+
+Listo los partidos existentes
+Mirandés
+Salamanca
+Ponferradina
+Zamora
+Burgos
+Valladolid
+
+Muestro los datos completos del equipo con identificador 'Zamora'
+Zamora (Zamora Club de Fútbol)
+
+Creo tres partidos
+
+Listo los partidos existentes
+Partido p2: Burgos-Zamora
+Partido p1: Mirandés-Ponferradina
+Partido p0: Valladolid-Salamanca
+
+Muestro el partido con identificador 'p2'
+Partido p2: Burgos-Zamora (admite apuestas entre 17-abr-2015 8:00 y 19-abr-2015 19:30)
+
+Modifico el partido con identificador 'p2'
+
+Muestro el partido con identificador 'p2', para comprobar la modificación
+Partido p2: Burgos-Zamora (admite apuestas entre 24-abr-2015 8:00 y 26-abr-2015 19:30)
+
+Elimino el partido con identificador 'p2'
+
+Listo los partidos existentes, para comprobar la eliminación
+Partido p1: Mirandés-Ponferradina
+Partido p0: Valladolid-Salamanca
+
+Creo un partido adicional, pero admitiendo apuestas una semana más tarde
+
+Muestro el partido con identificador 'p3', recién creado
+Partido p3: Burgos-Zamora (admite apuestas entre 24-abr-2015 8:00 y 26-abr-2015 19:30)
+
+Listo los partidos que admiten apuestas (sólo deberían salir dos)
+Partido p1: Mirandés-Ponferradina
+Partido p0: Valladolid-Salamanca
+
+Creo dos apuestas de 'marcador' y dos apuestas de 'quiniela' sobre el partido con identificador 'p0'
+
+Listo las apuestas realizadas sobre el partido con identificador 'p0'
+Apuesta de tipo QUINIELA: El jugador 'edugom' ha apostado 15,00 al resultado '2' en el partido Valladolid-Salamanca
+Apuesta de tipo QUINIELA: El jugador 'mperez' ha apostado 8,50 al resultado 'X' en el partido Valladolid-Salamanca
+Apuesta de tipo MARCADOR: El jugador 'edugom' ha apostado 20,00 al resultado '1-1' en el partido Valladolid-Salamanca
+Apuesta de tipo MARCADOR: El jugador 'mperez' ha apostado 10,00 al resultado '2-1' en el partido Valladolid-Salamanca
+
+Listo los movimientos de la cuenta del jugador con identificador 'edugom' para comprobar que se han anotado sus apuestas
+100,00 euros, por 'Ingreso en efectivo por el usuario edugom', con fecha 08-abr-2015
+-20,00 euros, por 'Pago de apuesta sobre Valladolid-Salamanca', con fecha 08-abr-2015
+-15,00 euros, por 'Pago de apuesta sobre Valladolid-Salamanca', con fecha 08-abr-2015
+===============================================
+PRUEBAS DE LA ITERACIÓN 1 - ESCENARIOS DE FALLO
+===============================================
+
+Intento crear un equipo con un identificador 'Valladolid'
+Ha fallado una operación sobre el equipo con identificador 'Valladolid', por la siguiente causa: YA_EXISTE
+
+Intento mostrar los datos del equipo 'Telecos'
+Ha fallado una operación sobre el equipo con identificador 'Telecos', por la siguiente causa: NO_EXISTE
+
+Intento crear un partido con las fechas en orden inverso
+Ha fallado una operación sobre el partido con identificador '<ninguno>', por la siguiente causa: FECHAS_INCORRECTAS
+
+Intento crear un partido con equipos que no existen
+Ha fallado una operación sobre el equipo con identificador 'Telecos', por la siguiente causa: NO_EXISTE
+
+Intento modificar un partido con las fechas en orden inverso
+Ha fallado una operación sobre el partido con identificador 'p1', por la siguiente causa: FECHAS_INCORRECTAS
+
+Intento modificar un partido con equipos que no existen
+Ha fallado una operación sobre el equipo con identificador 'Telecos', por la siguiente causa: NO_EXISTE
+
+Intento mostrar el partido con identificador 'ninguno'
+Ha fallado una operación sobre el partido con identificador 'ninguno', por la siguiente causa: NO_EXISTE
+
+Intento modificar el partido con identificador 'ninguno'
+Ha fallado una operación sobre el partido con identificador 'ninguno', por la siguiente causa: NO_EXISTE
+
+Intento eliminar el partido con identificador 'ninguno'
+Ha fallado una operación sobre el partido con identificador 'ninguno', por la siguiente causa: NO_EXISTE
+
+Intento crear una apuesta sobre el partido con identificador 'ninguno'
+Ha fallado una operación sobre el partido con identificador 'ninguno', por la siguiente causa: NO_EXISTE
+
+Intento crear una apuesta sobre un partido que no acepta apuestas hasta la semana siguiente
+Ha fallado una operación de apuestas por la siguiente causa: PARTIDO_CERRADO
+
+Intento crear una apuesta por 200 euros de un jugador que tiene sólo 65 euros
+Ha fallado una operación de apuestas por la siguiente causa: USUARIO_SIN_FONDOS
