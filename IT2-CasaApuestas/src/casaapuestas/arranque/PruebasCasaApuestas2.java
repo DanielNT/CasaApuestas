@@ -5,9 +5,9 @@ import java.util.List;
 
 import casaapuestas.apuestas.ExcepcionApuesta;
 import casaapuestas.apuestas.TipoApuesta;
+import casaapuestas.equipos.ExcepcionEquipo;
 import casaapuestas.partidos.ControladorPartidos;
-import casaapuestas.partidos.ExcepcionEquipo;
-import casaapuestas.partidos.ExcepcionPartido;
+import casaapuestas.partidos.ExcepcionPartidos;
 import casaapuestas.usuarios.ControladorUsuarios;
 import casaapuestas.usuarios.ExcepcionUsuario;
 import casaapuestas.usuarios.MetodoMensajeria;
@@ -80,19 +80,19 @@ public class PruebasCasaApuestas2 {
 			finApuestas2.set(2015, Calendar.MAY, 17, 19, 30);
 			//Creo partidos, tres esta semana y tres la semana próxima
 			System.out.println("\nCreo tres partidos");
-			cp.nuevoPartido("Valladolid", "Salamanca", inicioApuestas, finApuestas);		// Será el "p0"
-			cp.nuevoPartido("Mirandés", "Ponferradina", inicioApuestas, finApuestas);		// Será el "p1"
-			cp.nuevoPartido("Burgos", "Zamora", inicioApuestas, finApuestas);				// Será el "p2"
-			cp.nuevoPartido("Zamora", "Mirandés", inicioApuestas2, finApuestas2);			// Será el "p3"
-			cp.nuevoPartido("Salamanca", "Ponferradina", inicioApuestas2, finApuestas2);	// Será el "p4"
-			cp.nuevoPartido("Burgos", "Valladolid", inicioApuestas2, finApuestas2);			// Será el "p5"
+			cp.añadirPartido("Valladolid", "Salamanca", inicioApuestas, finApuestas);		// Será el "p0"
+			cp.añadirPartido("Mirandés", "Ponferradina", inicioApuestas, finApuestas);		// Será el "p1"
+			cp.añadirPartido("Burgos", "Zamora", inicioApuestas, finApuestas);				// Será el "p2"
+			cp.añadirPartido("Zamora", "Mirandés", inicioApuestas2, finApuestas2);			// Será el "p3"
+			cp.añadirPartido("Salamanca", "Ponferradina", inicioApuestas2, finApuestas2);	// Será el "p4"
+			cp.añadirPartido("Burgos", "Valladolid", inicioApuestas2, finApuestas2);			// Será el "p5"
 		} catch (ExcepcionUsuario eu) {
 			//No se debería llegar hasta aquí, pero hay que comprobarlo
 			System.out.println("Ha fallado una operación sobre el usuario con identificador '" + eu.getLogin() + "', por la siguiente causa: " + eu.getCausa().toString());
 		} catch (ExcepcionEquipo ee) {
 			//Si se llega hasta aquí alguna operación con equipos ha ido mal
 			System.out.println("Ha fallado una operación sobre el equipo con identificador '" + ee.getIdEquipo() + "', por la siguiente causa: " + ee.getCausa().toString());
-		} catch (ExcepcionPartido ep) {
+		} catch (ExcepcionPartidos ep) {
 			//Si se llega hasta aquí alguna operación con partidos ha ido mal
 			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
 		}
@@ -188,7 +188,7 @@ public class PruebasCasaApuestas2 {
 			for(String s : listado) {
 				System.out.println(s);
 			}			
-		} catch (ExcepcionPartido ep) {
+		} catch (ExcepcionPartidos ep) {
 			//Si se llega hasta aquí alguna operación con partidos ha ido mal
 			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
 		} catch (ExcepcionUsuario eu) {
@@ -239,11 +239,11 @@ public class PruebasCasaApuestas2 {
 		try {
 			//Caso de uso "crear partido": se intenta crear un partido con fechas en orden inverso
 			System.out.println("\nIntento crear un partido con las fechas en orden inverso");
-			cp.nuevoPartido("Valladolid", "Salamanca", finApuestas, inicioApuestas);
+			cp.añadirPartido("Valladolid", "Salamanca", finApuestas, inicioApuestas);
 		} catch (ExcepcionEquipo ee) {
 			//Si se llega hasta aquí alguna operación con equipos ha ido mal
 			System.out.println("Ha fallado una operación sobre el equipo con identificador '" + ee.getIdEquipo() + "', por la siguiente causa: " + ee.getCausa().toString());
-		} catch (ExcepcionPartido ep) {
+		} catch (ExcepcionPartidos ep) {
 			//Si se llega hasta aquí alguna operación con partidos ha ido mal
 			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
 		}
@@ -251,11 +251,11 @@ public class PruebasCasaApuestas2 {
 		try {
 			//Caso de uso "crear partido": se intenta crear un partido con equipos que no existen
 			System.out.println("\nIntento crear un partido con equipos que no existen");
-			cp.nuevoPartido("Telecos", "Informáticos", inicioApuestas, finApuestas);
+			cp.añadirPartido("Telecos", "Informáticos", inicioApuestas, finApuestas);
 		} catch (ExcepcionEquipo ee) {
 			//Si se llega hasta aquí alguna operación con equipos ha ido mal
 			System.out.println("Ha fallado una operación sobre el equipo con identificador '" + ee.getIdEquipo() + "', por la siguiente causa: " + ee.getCausa().toString());
-		} catch (ExcepcionPartido ep) {
+		} catch (ExcepcionPartidos ep) {
 			//Si se llega hasta aquí alguna operación con partidos ha ido mal
 			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
 		}	
@@ -267,7 +267,7 @@ public class PruebasCasaApuestas2 {
 		} catch (ExcepcionEquipo ee) {
 			//Si se llega hasta aquí alguna operación con equipos ha ido mal
 			System.out.println("Ha fallado una operación sobre el equipo con identificador '" + ee.getIdEquipo() + "', por la siguiente causa: " + ee.getCausa().toString());
-		} catch (ExcepcionPartido ep) {
+		} catch (ExcepcionPartidos ep) {
 			//Si se llega hasta aquí alguna operación con partidos ha ido mal
 			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
 		}
@@ -279,7 +279,7 @@ public class PruebasCasaApuestas2 {
 		} catch (ExcepcionEquipo ee) {
 			//Si se llega hasta aquí alguna operación con equipos ha ido mal
 			System.out.println("Ha fallado una operación sobre el equipo con identificador '" + ee.getIdEquipo() + "', por la siguiente causa: " + ee.getCausa().toString());
-		} catch (ExcepcionPartido ep) {
+		} catch (ExcepcionPartidos ep) {
 			//Si se llega hasta aquí alguna operación con partidos ha ido mal
 			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
 		}	
@@ -289,7 +289,7 @@ public class PruebasCasaApuestas2 {
 			System.out.println("\nIntento mostrar el partido con identificador 'ninguno'");
 			String ficha = cp.mostrarPartido("ninguno");
 			System.out.println(ficha);
-		} catch (ExcepcionPartido ep) {
+		} catch (ExcepcionPartidos ep) {
 			//Si se llega hasta aquí alguna operación con partidos ha ido mal
 			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
 		}
@@ -301,7 +301,7 @@ public class PruebasCasaApuestas2 {
 		} catch (ExcepcionEquipo ee) {
 			//Si se llega hasta aquí alguna operación con equipos ha ido mal
 			System.out.println("Ha fallado una operación sobre el equipo con identificador '" + ee.getIdEquipo() + "', por la siguiente causa: " + ee.getCausa().toString());
-		} catch (ExcepcionPartido ep) {
+		} catch (ExcepcionPartidos ep) {
 			//Si se llega hasta aquí alguna operación con partidos ha ido mal
 			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
 		}
@@ -310,7 +310,7 @@ public class PruebasCasaApuestas2 {
 			//Caso de uso "eliminar partido": se intenta eliminar un partido que no existe
 			System.out.println("\nIntento eliminar el partido con identificador 'ninguno'");
 			cp.eliminarPartido("ninguno");
-		} catch (ExcepcionPartido ep) {
+		} catch (ExcepcionPartidos ep) {
 			//Si se llega hasta aquí alguna operación con partidos ha ido mal
 			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
 		}
@@ -319,7 +319,7 @@ public class PruebasCasaApuestas2 {
 			//Caso de uso "crear apuesta": se intenta crear una apuesta sobre un partido que no existe
 			System.out.println("\nIntento crear una apuesta sobre el partido con identificador 'ninguno'");
 			cp.nuevaApuesta("jugador0", "ninguno", TipoApuesta.MARCADOR, "0-0", (float)10.0);		
-		} catch (ExcepcionPartido ep) {
+		} catch (ExcepcionPartidos ep) {
 			//Si se llega hasta aquí alguna operación con partidos ha ido mal
 			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
 		} catch (ExcepcionUsuario eu) {
@@ -334,7 +334,7 @@ public class PruebasCasaApuestas2 {
 			//Caso de uso "crear apuesta": se intenta crear una apuesta sobre un partido que no acepta apuestas
 			System.out.println("\nIntento crear una apuesta sobre un partido que no acepta apuestas hasta la semana siguiente");
 			cp.nuevaApuesta("jugador0", "p3", TipoApuesta.MARCADOR, "0-0", (float)10.0);		
-		} catch (ExcepcionPartido ep) {
+		} catch (ExcepcionPartidos ep) {
 			//Si se llega hasta aquí alguna operación con partidos ha ido mal
 			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
 		} catch (ExcepcionUsuario eu) {
@@ -349,7 +349,7 @@ public class PruebasCasaApuestas2 {
 			//Caso de uso "crear apuesta": se intenta crear una apuesta por encima del saldo del usuario
 			System.out.println("\nIntento crear una apuesta por 500 euros de un jugador que menos");
 			cp.nuevaApuesta("jugador0", "p0", TipoApuesta.MARCADOR, "0-0", (float)500.0);		
-		} catch (ExcepcionPartido ep) {
+		} catch (ExcepcionPartidos ep) {
 			//Si se llega hasta aquí alguna operación con partidos ha ido mal
 			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
 		} catch (ExcepcionUsuario eu) {
@@ -368,7 +368,7 @@ public class PruebasCasaApuestas2 {
 			//Caso de uso "fijar resultado": se intenta fijar un resultado sobre un partido abierto
 			System.out.println("\nIntento fijar un resultado sobre el partido 'p3'");
 			cp.fijarResultadoPartido("p3", TipoApuesta.MARCADOR, "2-2");		
-		} catch (ExcepcionPartido ep) {
+		} catch (ExcepcionPartidos ep) {
 			//Si se llega hasta aquí alguna operación con partidos ha ido mal
 			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
 		} catch (ExcepcionApuesta ea) {
@@ -380,7 +380,7 @@ public class PruebasCasaApuestas2 {
 			//Caso de uso "fijar resultado": se intenta fijar un resultado sobre un partido ya pagado
 			System.out.println("\nIntento fijar un resultado sobre el partido 'p0'");
 			cp.fijarResultadoPartido("p0", TipoApuesta.MARCADOR, "3-1");		
-		} catch (ExcepcionPartido ep) {
+		} catch (ExcepcionPartidos ep) {
 			//Si se llega hasta aquí alguna operación con partidos ha ido mal
 			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
 		} catch (ExcepcionApuesta ea) {
@@ -392,7 +392,7 @@ public class PruebasCasaApuestas2 {
 			//Caso de uso "pagar apuestas": intento volver a pagar unas apuestas ya pagadas
 			System.out.println("\nIntento volver a pagar las apuestas de 'marcador' del partido 'p0'");
 			cp.pagarApuestasPartido("p0", TipoApuesta.MARCADOR);				
-		} catch (ExcepcionPartido ep) {
+		} catch (ExcepcionPartidos ep) {
 			//Si se llega hasta aquí alguna operación con partidos ha ido mal
 			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
 		} catch (ExcepcionApuesta ea) {
@@ -404,7 +404,7 @@ public class PruebasCasaApuestas2 {
 			//Caso de uso "pagar apuestas": intento pagar unas apuestas de un partido sin resultado
 			System.out.println("\nIntento pagar las apuestas de 'marcador' del partido 'p1'");
 			cp.pagarApuestasPartido("p1", TipoApuesta.MARCADOR);				
-		} catch (ExcepcionPartido ep) {
+		} catch (ExcepcionPartidos ep) {
 			//Si se llega hasta aquí alguna operación con partidos ha ido mal
 			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
 		} catch (ExcepcionApuesta ea) {
