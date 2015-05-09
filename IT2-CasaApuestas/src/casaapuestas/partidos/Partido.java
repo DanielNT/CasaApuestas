@@ -128,6 +128,10 @@ public class Partido {
 		this.fFinApuesta = fFinApuesta;
 	}
 	
+	public Map<TipoApuesta, ContenedorApuestas> verApuestasPartido(){
+		return listaContenedorApuestas; 
+	}
+	
 
 }
 

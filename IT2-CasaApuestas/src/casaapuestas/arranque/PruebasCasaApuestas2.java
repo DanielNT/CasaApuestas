@@ -360,57 +360,57 @@ public class PruebasCasaApuestas2 {
 			System.out.println("Ha fallado una operación de apuestas por la siguiente causa: " + ea.getCausa().toString());
 		}
 
-		System.out.println("===============================================");
-		System.out.println("PRUEBAS DE LA ITERACIÓN 2 - ESCENARIOS DE FALLO");
-		System.out.println("===============================================");
-
-		try {
-			//Caso de uso "fijar resultado": se intenta fijar un resultado sobre un partido abierto
-			System.out.println("\nIntento fijar un resultado sobre el partido 'p3'");
-			cp.fijarResultadoPartido("p3", TipoApuesta.MARCADOR, "2-2");		
-		} catch (ExcepcionPartidos ep) {
-			//Si se llega hasta aquí alguna operación con partidos ha ido mal
-			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
-		} catch (ExcepcionApuesta ea) {
-			//Si se llega hasta aquí alguna operación con apuestas ha ido mal
-			System.out.println("Ha fallado una operación de apuestas por la siguiente causa: " + ea.getCausa().toString());
-		}
-
-		try {
-			//Caso de uso "fijar resultado": se intenta fijar un resultado sobre un partido ya pagado
-			System.out.println("\nIntento fijar un resultado sobre el partido 'p0'");
-			cp.fijarResultadoPartido("p0", TipoApuesta.MARCADOR, "3-1");		
-		} catch (ExcepcionPartidos ep) {
-			//Si se llega hasta aquí alguna operación con partidos ha ido mal
-			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
-		} catch (ExcepcionApuesta ea) {
-			//Si se llega hasta aquí alguna operación con apuestas ha ido mal
-			System.out.println("Ha fallado una operación de apuestas por la siguiente causa: " + ea.getCausa().toString());
-		}
-		
-		try {
-			//Caso de uso "pagar apuestas": intento volver a pagar unas apuestas ya pagadas
-			System.out.println("\nIntento volver a pagar las apuestas de 'marcador' del partido 'p0'");
-			cp.pagarApuestasPartido("p0", TipoApuesta.MARCADOR);				
-		} catch (ExcepcionPartidos ep) {
-			//Si se llega hasta aquí alguna operación con partidos ha ido mal
-			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
-		} catch (ExcepcionApuesta ea) {
-			//Si se llega hasta aquí alguna operación con apuestas ha ido mal
-			System.out.println("Ha fallado una operación de apuestas por la siguiente causa: " + ea.getCausa().toString());
-		}
-
-		try {
-			//Caso de uso "pagar apuestas": intento pagar unas apuestas de un partido sin resultado
-			System.out.println("\nIntento pagar las apuestas de 'marcador' del partido 'p1'");
-			cp.pagarApuestasPartido("p1", TipoApuesta.MARCADOR);				
-		} catch (ExcepcionPartidos ep) {
-			//Si se llega hasta aquí alguna operación con partidos ha ido mal
-			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
-		} catch (ExcepcionApuesta ea) {
-			//Si se llega hasta aquí alguna operación con apuestas ha ido mal
-			System.out.println("Ha fallado una operación de apuestas por la siguiente causa: " + ea.getCausa().toString());
-		}
+//		System.out.println("===============================================");
+//		System.out.println("PRUEBAS DE LA ITERACIÓN 2 - ESCENARIOS DE FALLO");
+//		System.out.println("===============================================");
+//
+//		try {
+//			//Caso de uso "fijar resultado": se intenta fijar un resultado sobre un partido abierto
+//			System.out.println("\nIntento fijar un resultado sobre el partido 'p3'");
+//			cp.fijarResultadoPartido("p3", TipoApuesta.MARCADOR, "2-2");		
+//		} catch (ExcepcionPartidos ep) {
+//			//Si se llega hasta aquí alguna operación con partidos ha ido mal
+//			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
+//		} catch (ExcepcionApuesta ea) {
+//			//Si se llega hasta aquí alguna operación con apuestas ha ido mal
+//			System.out.println("Ha fallado una operación de apuestas por la siguiente causa: " + ea.getCausa().toString());
+//		}
+//
+//		try {
+//			//Caso de uso "fijar resultado": se intenta fijar un resultado sobre un partido ya pagado
+//			System.out.println("\nIntento fijar un resultado sobre el partido 'p0'");
+//			cp.fijarResultadoPartido("p0", TipoApuesta.MARCADOR, "3-1");		
+//		} catch (ExcepcionPartidos ep) {
+//			//Si se llega hasta aquí alguna operación con partidos ha ido mal
+//			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
+//		} catch (ExcepcionApuesta ea) {
+//			//Si se llega hasta aquí alguna operación con apuestas ha ido mal
+//			System.out.println("Ha fallado una operación de apuestas por la siguiente causa: " + ea.getCausa().toString());
+//		}
+//		
+//		try {
+//			//Caso de uso "pagar apuestas": intento volver a pagar unas apuestas ya pagadas
+//			System.out.println("\nIntento volver a pagar las apuestas de 'marcador' del partido 'p0'");
+//			cp.pagarApuestasPartido("p0", TipoApuesta.MARCADOR);				
+//		} catch (ExcepcionPartidos ep) {
+//			//Si se llega hasta aquí alguna operación con partidos ha ido mal
+//			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
+//		} catch (ExcepcionApuesta ea) {
+//			//Si se llega hasta aquí alguna operación con apuestas ha ido mal
+//			System.out.println("Ha fallado una operación de apuestas por la siguiente causa: " + ea.getCausa().toString());
+//		}
+//
+//		try {
+//			//Caso de uso "pagar apuestas": intento pagar unas apuestas de un partido sin resultado
+//			System.out.println("\nIntento pagar las apuestas de 'marcador' del partido 'p1'");
+//			cp.pagarApuestasPartido("p1", TipoApuesta.MARCADOR);				
+//		} catch (ExcepcionPartidos ep) {
+//			//Si se llega hasta aquí alguna operación con partidos ha ido mal
+//			System.out.println("Ha fallado una operación sobre el partido con identificador '" + ep.getIdPartido() + "', por la siguiente causa: " + ep.getCausa().toString());
+//		} catch (ExcepcionApuesta ea) {
+//			//Si se llega hasta aquí alguna operación con apuestas ha ido mal
+//			System.out.println("Ha fallado una operación de apuestas por la siguiente causa: " + ea.getCausa().toString());
+//		}
 
 	}
 }

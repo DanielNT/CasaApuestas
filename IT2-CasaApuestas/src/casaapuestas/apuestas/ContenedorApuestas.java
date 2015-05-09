@@ -27,6 +27,8 @@ public class ContenedorApuestas {
 
 	}
 	
-		
+	public List<Apuesta> getApuesta(){
+		return listadoApuestas;
+	}
 	
 }
