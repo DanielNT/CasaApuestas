@@ -3,7 +3,6 @@ package casaapuestas.partidos;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -391,80 +390,87 @@ public class ControladorPartidos {
 		}
 	
 		
-		
-		
-	
-	/**
-	 * Crea una nueva apuesta en la lista de Apuestas (del tipo LinkedHashSet, es decir, ordenada). Revisa si es posible apostar
-	 * 
-	 * @param login El login del usuario
-	 * @param idPartido El id del partido al que se apuesta
-	 * @param tApuesta El tipo de apuesta
-	 * @param resultado El resultado al que el usuario apuesta
-	 * @param cantidadApostada La cantidad de dinero apostada
-	 * @throws ExcepcionApuesta Si hay problemas en la creación de apuesta
-	 * @throws ExcepcionUsuario 
-	 * @throws ExcepcionPartidos Si no existe el id del partido
-	 */
-	public void nuevaApuesta(String login, String idPartido, TipoApuesta tApuesta, String resultado,float cantidadApostada)throws ExcepcionApuesta, ExcepcionUsuario, ExcepcionPartidos{
+		/**
+		 * Crea una nueva apuesta en la lista de Apuestas (del tipo LinkedHashSet, es decir, ordenada). Revisa si es posible apostar
+		 * 
+		 * @param login El login del usuario
+		 * @param idPartido El id del partido al que se apuesta
+		 * @param tApuesta El tipo de apuesta
+		 * @param resultado El resultado al que el usuario apuesta
+		 * @param cantidadApostada La cantidad de dinero apostada
+		 * @throws ExcepcionApuesta Si hay problemas en la creación de apuesta
+		 * @throws ExcepcionUsuario 
+		 * @throws ExcepcionPartidos Si no existe el id del partido
+		 */
+		public void nuevaApuesta(String login, String idPartido, TipoApuesta tApuesta, String resultado,float cantidadApostada)throws ExcepcionApuesta, ExcepcionUsuario, ExcepcionPartidos{
 
-		
-		Map<TipoApuesta, ContenedorApuestas> mapaContainer;
-		
-		//Si el saldo del jugador es menor que la cantidad apostada, salta la excepción
-		if((cu.verSaldoJugador(login)-cantidadApostada)<0)
-		{
-			throw new ExcepcionUsuario(CausaExcepcionUsuario.USUARIO_SIN_FONDOS, login);
-		}
-		
-		//Variable de control de la búsqueda;
-		boolean BUSQUEDA= false; 
-		
-		//Obtiene la fecha actual del sistema para saber si se puede apostar
-		Calendar fechaActual = Calendar.getInstance();
-		fechaActual.getTime();
-	
-	
-		for(Partido p : listaPartidos.values()){
 			
-			if (p.getIdPartido().equals(idPartido)) {
-				
+			Map<TipoApuesta, ContenedorApuestas> mapaContainer = null;
+//			List<Apuesta> la= new ArrayList<Apuesta>();
 			
-				//Si la fecha actual es posterior a la fijada para el inicio de apuesta e inferior a la de fin Apuesta
-				if((fechaActual.before(p.getfFinApuesta())) && (fechaActual.after(p.getfInicApuesta()))){
-	
-					mapaContainer=p.verApuestasPartido();
-					
-					for	(Map.Entry<TipoApuesta, ContenedorApuestas> entry : mapaContainer.entrySet())	{
-						
-						ContenedorApuestas values = entry.getValue();
-							
-					
-					Apuesta nuevaApuesta = new Apuesta(login, idPartido, tApuesta,resultado,cantidadApostada,p.getEquipoL(),p.getEquipoV());
-					// Y la colecciona
-					values.getApuesta().add(nuevaApuesta);
-					cu.realizarApuestaJugador(login, cantidadApostada, p.getEquipoL(), p.getEquipoV());
-					
-					//Pone las variables de control a TRUE
-					BUSQUEDA=true;
-
-					//sale del bucle
-					break;
-					}
-				}
-			
-				else{
-					throw new ExcepcionApuesta(CausaExcepcionApuestas.PARTIDO_CERRADO, idPartido);
-				}
+			//Si el saldo del jugador es menor que la cantidad apostada, salta la excepción
+			if((cu.verSaldoJugador(login)-cantidadApostada)<0)
+			{
+				throw new ExcepcionUsuario(CausaExcepcionUsuario.USUARIO_SIN_FONDOS, login);
 			}
 			
-		}
-			//Manda una excepción para el partido solo si no encuentra el id
-			if (BUSQUEDA==false){
-				throw new ExcepcionPartidos(CausaExcepcionPartidos.NO_EXISTE, idPartido);
-			}	
+			//Variable de control de la búsqueda;
+			boolean BUSQUEDA= false; 
+			boolean TIPOAPUESTA=false;
+			
+			//Obtiene la fecha actual del sistema para saber si se puede apostar
+			Calendar fechaActual = Calendar.getInstance();
+			fechaActual.getTime();
 		
-	}
-	
+		
+			for(Partido p : listaPartidos.values()){
+				
+				//Si la fecha actual es posterior a la fijada para el inicio de apuesta e inferior a la de fin Apuesta	
+			if((fechaActual.before(p.getfFinApuesta())) && (fechaActual.after(p.getfInicApuesta()))){	
+				
+				if (p.getIdPartido().equals(idPartido)) {
+					
+					mapaContainer=p.verApuestasPartido();
+					ContenedorApuestas ca=null;
+				
+						if(mapaContainer.containsKey(tApuesta))
+						{
+							Apuesta nuevaApuesta = new Apuesta(login, idPartido, tApuesta,resultado,cantidadApostada,p.getEquipoL(),p.getEquipoV());
+							ca=mapaContainer.get(tApuesta);
+							ca.getApuesta().add(nuevaApuesta);
+							cu.realizarApuestaJugador(login, cantidadApostada, p.getEquipoL(), p.getEquipoV());
+							BUSQUEDA=true;
+							TIPOAPUESTA=true;
+						}
+						else{
+							ContenedorApuestas cb= new ContenedorApuestas();
+							mapaContainer.put(tApuesta, cb);
+							Apuesta nuevaApuesta = new Apuesta(login, idPartido, tApuesta,resultado,cantidadApostada,p.getEquipoL(),p.getEquipoV());
+							cb.getApuesta().add(nuevaApuesta);
+							cu.realizarApuestaJugador(login, cantidadApostada, p.getEquipoL(), p.getEquipoV());
+							BUSQUEDA=true;
+							TIPOAPUESTA=true;
+						}
+						
+					}
+			}
+			
+			else{
+				throw new ExcepcionApuesta(CausaExcepcionApuestas.PARTIDO_CERRADO, idPartido);
+			}
+				
+//					if (BUSQUEDA==false){
+//						throw new ExcepcionPartidos(CausaExcepcionPartidos.NO_EXISTE, idPartido);
+//					}
+					
+//					if (TIPOAPUESTA=false){
+//						
+//					}
+					//Manda una excepción para el partido solo si no encuentra el id
+						
+				
+			
+			}
+		}
 
 }
