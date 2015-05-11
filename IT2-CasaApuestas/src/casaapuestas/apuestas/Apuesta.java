@@ -109,13 +109,13 @@ public class Apuesta {
 	}
 
 
-//	/**
-//	 * @return the resolucion
-//	 */
-//	public boolean isResolucion() {
-//		return resolucion;
-//	}
-//
+	/**
+	 * @return the resolucion
+	 */
+	public boolean getResolucion() {
+		return resolucion;
+	}
+
 //
 //	/**
 //	 * @return the listaJugadores
@@ -124,6 +124,9 @@ public class Apuesta {
 //		return listaJugadores;
 //	}
 	
+	public void setResolucion(boolean resolucion){
+		this.resolucion=resolucion;
+	}
 	
 
 }
