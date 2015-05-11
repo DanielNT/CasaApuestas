@@ -44,6 +44,7 @@ public class ControladorPartidos {
 		this.cu=cu;
 		listaPartidos = new HashMap<String, Partido>();
 		listaEquipos = new HashMap<String, Equipo>();
+		listaResultados=new HashMap<TipoApuesta, String>();
 
 	}
 	
@@ -420,6 +421,8 @@ public class ControladorPartidos {
 		
 
 		public void pagarApuestasPartido(String idPartido, TipoApuesta tApuesta){
+			
+			
 			
 		}
 		
