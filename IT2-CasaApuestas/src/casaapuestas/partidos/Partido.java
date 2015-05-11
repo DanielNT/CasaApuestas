@@ -132,7 +132,9 @@ public class Partido {
 		return listaContenedorApuestas; 
 	}
 	
-	
+	public Map<TipoApuesta, String> verResultadosPartido(){
+		return listaResultados; 
+	}
 
 
 }

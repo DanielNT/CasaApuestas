@@ -32,6 +32,7 @@ public class ControladorPartidos {
 	private ControladorUsuarios cu;
 	private Map<String, Partido> listaPartidos;
 	private Map<String, Equipo> listaEquipos;
+	private Map<TipoApuesta, String> listaResultados;
 	
 	
 	/**
@@ -176,12 +177,20 @@ public class ControladorPartidos {
 			
 				String idPartido= "p" + ID;
 				
-				comprobarEquipos(equipoL,equipoV);
+				boolean comprobacion = false;
+				
+				if(listaEquipos.containsKey(equipoL) && listaEquipos.containsKey(equipoV))
+				{
+					comprobacion=true;
+				}
+				
+				if(comprobacion==false){
+					throw new ExcepcionEquipo(CausaExcepcionEquipo.NO_EXISTE, equipoL+ "o" + equipoV);
+				}
 				
 				//si la fecha de inicio es posterior a la del final
 				if(fInicApuesta.after(fFinApuesta))
 				{
-					
 					throw new ExcepcionPartidos(CausaExcepcionPartidos.FECHAS_INCORRECTAS, idPartido);
 				}
 				
@@ -236,19 +245,26 @@ public class ControladorPartidos {
 				throws ExcepcionPartidos, ExcepcionEquipo {
 			
 			//Comprueba si los equipos existen
-			comprobarEquipos(equipoL,equipoV);
+			boolean comprobacion = false;
+			
+			if(listaEquipos.containsKey(equipoL) && listaEquipos.containsKey(equipoV))
+			{
+				comprobacion=true;
+			}
+			
+			if(comprobacion==false){
+				throw new ExcepcionEquipo(CausaExcepcionEquipo.NO_EXISTE, equipoL+ "o" + equipoV);
+			}
 			
 			//si la fecha de inicio es posterior a la del final
 			if(fInicApuesta.after(fFinApuesta))
 			{
-				
 				throw new ExcepcionPartidos(CausaExcepcionPartidos.FECHAS_INCORRECTAS, idPartido);
 			}
 			
 			
 			// Recupera la instancia de la colección
 			Partido estePartido = listaPartidos.get(idPartido);
-			
 		
 			// Si estePartido existía, no es null
 			if (estePartido != null) {
@@ -292,50 +308,7 @@ public class ControladorPartidos {
 			 
 		}
 		
-		
-		
-		/**
-		 * Algoritmo básico para comprobar si los equipos existen
-		 * @param equipoL El nombre del equipo local.
-		 * @param equipoV El nombre del equipo visitante.
-
-		 * @throws ExcepcionEquipo Excepción si hay un error
-		 */
-		public void comprobarEquipos (String equipoL,String equipoV) throws ExcepcionEquipo{
-			
-			//Inicialmente a false
-			boolean EL=false;
-			boolean EV=false;
-			
-			for (Equipo e : listaEquipos.values()) {
-				if(equipoL==equipoV)
-				{
-					//Si el visitante y el local es el mismo, es que está duplicado
-					throw new ExcepcionEquipo(CausaExcepcionEquipo.EQ_DUPLICADO, equipoL);
-				}
-				if(e.getNombre().equals(equipoL))
-				{
-					//Existe el equipo local (variable a true)
-					EL=true;
-				}
-				if (e.getNombre().equals(equipoV))
-				{
-					//Existe el equipo visitante (variable a true)
-					EV=true;
-				}
 				
-			}
-
-			//Si no ha encontrado en la lista al visitante o al local lanza la excepción
-			if(EL==false) {
-				 throw new ExcepcionEquipo(CausaExcepcionEquipo.NO_EXISTE, equipoL);
-			 }
-			
-			if(EV==false) {
-				 throw new ExcepcionEquipo(CausaExcepcionEquipo.NO_EXISTE, equipoV);
-			 }
-		}
-		
 		
 		/**
 		 * Lista todas las apuestas del partido, clasificadas según modalidad
@@ -399,6 +372,9 @@ public class ControladorPartidos {
 			Calendar fechaActual = Calendar.getInstance();
 			fechaActual.getTime();
 		
+			if(!listaPartidos.containsKey(idPartido)){
+				throw new ExcepcionPartidos(CausaExcepcionPartidos.NO_EXISTE,idPartido);
+			}
 		
 			for(Partido p : listaPartidos.values()){
 				
@@ -416,8 +392,6 @@ public class ControladorPartidos {
 							ca=mapaContainer.get(tApuesta);
 							ca.getApuesta().add(nuevaApuesta);
 							cu.realizarApuestaJugador(login, cantidadApostada, p.getEquipoL(), p.getEquipoV());
-							BUSQUEDA=true;
-							break;
 						}
 						else{
 							ContenedorApuestas cb= new ContenedorApuestas();
@@ -425,34 +399,53 @@ public class ControladorPartidos {
 							Apuesta nuevaApuesta = new Apuesta(login, idPartido, tApuesta,resultado,cantidadApostada,p.getEquipoL(),p.getEquipoV());
 							cb.getApuesta().add(nuevaApuesta);
 							cu.realizarApuestaJugador(login, cantidadApostada, p.getEquipoL(), p.getEquipoV());
-							BUSQUEDA=true;
-							break;
 						}
-						
+						BUSQUEDA=true;
+						break;
 					}
+			
 			}
 			
 			else{
 				throw new ExcepcionApuesta(CausaExcepcionApuestas.PARTIDO_CERRADO, idPartido);
 			}
-			
 			}
+			
 			
 			if (BUSQUEDA==false){
 				throw new ExcepcionPartidos(CausaExcepcionPartidos.NO_EXISTE, idPartido);
 			}
-		}
 		
+	}
 		
-	
 
 		public void pagarApuestasPartido(String idPartido, TipoApuesta tApuesta){
 			
 		}
 		
-		public void fijarResultadoPartido(String idPartido, TipoApuesta tApuesta, String resultado){
-	
+		public void fijarResultadoPartido(String idPartido, TipoApuesta tApuesta, String resultado) throws ExcepcionPartidos{
+			
+//			listaResultados=new HashMap<TipoApuesta, String>();
+			if(!listaPartidos.containsKey(idPartido)){
+				throw new ExcepcionPartidos(CausaExcepcionPartidos.NO_EXISTE,idPartido);
+			}
+			
+			for(Partido p : listaPartidos.values()){
+				
+				if (p.getIdPartido().equals(idPartido)) {
+					
+					if(listaPartidos.containsKey(tApuesta)){
+						
+						listaResultados.replace(tApuesta, resultado);
+					}
+					else{
+				
+						listaResultados.put(tApuesta, resultado);
+					}
+					break;
+				}
+			}
 		}
-	
 
 }
+	
