@@ -378,7 +378,7 @@ public class PruebasCasaApuestas2 {
 //			//Si se llega hasta aquí alguna operación con apuestas ha ido mal
 //			System.out.println("Ha fallado una operación de apuestas por la siguiente causa: " + ea.getCausa().toString());
 //		}
-//
+
 //		try {
 //			//Caso de uso "fijar resultado": se intenta fijar un resultado sobre un partido ya pagado
 //			System.out.println("\nIntento fijar un resultado sobre el partido 'p0'");

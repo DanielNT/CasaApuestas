@@ -8,6 +8,8 @@ import java.util.Map;
 
 import casaapuestas.apuestas.ContenedorApuestas;
 import casaapuestas.apuestas.TipoApuesta;
+import casaapuestas.usuarios.ControladorUsuarios;
+import casaapuestas.usuarios.ExcepcionUsuario;
 
 
 
@@ -146,20 +148,17 @@ public class Partido {
 	}
 
 
-
 	public void setResultadoPartido(TipoApuesta tApuesta, String resultado) {
 		listaResultados.put(tApuesta,resultado);
 	}
 
-
-
-	public void pagarApuestas(TipoApuesta tApuesta) {
+	public void pagarApuestas(TipoApuesta tApuesta,String eqLocal, String eqVisitante, ControladorUsuarios cu) throws ExcepcionUsuario {
 		
-		listaContenedorApuestas.get(tApuesta).pagarApuestas(listaResultados);
+		String result=listaResultados.get(tApuesta);
 		
+		listaContenedorApuestas.get(tApuesta).pagarApuestasCont(listaResultados,result,eqLocal,eqVisitante, cu);
 		
 	}
-
 
 
 }

@@ -166,6 +166,7 @@ public class ControladorUsuarios {
 		}
 	}
 	
+	
 	/**
 	 * Realiza apuesta de una <code>cantidad</code>en la cuenta de un jugador
 	 * 
@@ -247,4 +248,24 @@ public class ControladorUsuarios {
 		}
 	}
 	
+	
+	/**
+	 * Método que permite realizar un ingreso de una <code>cantidad</code> de dinero en la cuenta del jugador identificado por el <code>login</code>
+	 * 
+	 * @param login El login, o identificador único de usuario
+	 * @param cantidad La cantidad a ingresar en la cuenta (positiva)
+	 * @throws ExcepcionUsuario Se produce si el usuario no existe
+	 */
+	public void cobroDePremioEnCuentaJugador(String login, String eqLocal, String eqVisitante, float cantidad) throws ExcepcionUsuario {
+		// Recupera la instancia de la colección
+		Jugador esteJugador = listaJugadores.get(login);
+		// Si este jugador existía, no es null
+		if (esteJugador != null) {
+			// Así que delegamos en él que realice el ingreso
+			esteJugador.realizarIngreso("Pago de apuesta sobre " + eqLocal + "-" + eqVisitante, cantidad);
+		} else {
+			// Pero si no existía lanza una excepción
+			throw new ExcepcionUsuario(CausaExcepcionUsuario.NO_EXISTE, login);
+		}
+	}
 }
