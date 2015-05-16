@@ -66,18 +66,18 @@ public class PruebasCasaApuestas2 {
 			//Se crea una fecha de inicio de las apuestas, que se fija al 8 de mayo de 2015, a las 8:00
 			Calendar inicioApuestas = Calendar.getInstance();
 			inicioApuestas.clear();
-			inicioApuestas.set(2015, Calendar.MAY, 10, 8, 0);
+			inicioApuestas.set(2015, Calendar.MAY, 15, 8, 0);
 			//Se crea una fecha de fin de las apuestas, que se fija al 10 de mayo de 2015, a las 19:30
 			Calendar finApuestas = Calendar.getInstance();
 			finApuestas.clear();
-			finApuestas.set(2015, Calendar.MAY, 15, 19, 30);
+			finApuestas.set(2015, Calendar.MAY, 23, 19, 30);
 			//Se crean otras dos fechas de inicio y fin de apuestas, para el fin de semana siguiente
 			Calendar inicioApuestas2 = Calendar.getInstance();
 			inicioApuestas2.clear();
-			inicioApuestas2.set(2015, Calendar.MAY, 16, 8, 0);
+			inicioApuestas2.set(2015, Calendar.MAY, 35, 8, 0);
 			Calendar finApuestas2 = Calendar.getInstance();
 			finApuestas2.clear();
-			finApuestas2.set(2015, Calendar.MAY, 19, 19, 30);
+			finApuestas2.set(2015, Calendar.MAY, 29, 19, 30);
 			//Creo partidos, tres esta semana y tres la semana próxima
 			System.out.println("\nCreo tres partidos");
 			cp.añadirPartido("Valladolid", "Salamanca", inicioApuestas, finApuestas);		// Será el "p0"
@@ -108,10 +108,13 @@ public class PruebasCasaApuestas2 {
 			// Función de listar, limitando el listado a los partidos que admiten apuestas, necesaria en "crear apuesta"
 			//NOTA: para que esto funcione hay que "trucar" el sistema de manera que crea que la fecha actual está en medio del intervalo en el que se admiten apuestas
 			System.out.println("\nListo los partidos que admiten apuestas (sólo deberían salir tres)");
+			
 			List<String> listado = cp.verPartidosAbiertosAApuesta();
 			for(String s : listado) {
 				System.out.println(s);
 			}
+			
+			System.out.println(cp.mostrarPartido("p2"));
 			
 			//Caso de uso "crear apuesta"
 			System.out.println("\nCreo apuestas de 'marcador' sobre el partido con identificador 'p0'. En total se apuestan 100 euros en esta modalidad y este partido.");

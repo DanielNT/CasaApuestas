@@ -30,5 +30,16 @@ public class ContenedorApuestas {
 	public List<Apuesta> getApuesta(){
 		return listadoApuestas;
 	}
+
+	public void pagarApuestas(Map<TipoApuesta, String> listaResultados) {
+		
+		for(Apuesta a: listadoApuestas)
+		{
+			
+			// Código
+			
+		}
+		
+	}
 	
 }

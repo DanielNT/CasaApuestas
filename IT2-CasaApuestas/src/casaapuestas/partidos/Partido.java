@@ -1,6 +1,7 @@
 package casaapuestas.partidos;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,8 +28,6 @@ public class Partido {
 	private Map<TipoApuesta, String> listaResultados= new HashMap<TipoApuesta, String>();;
 	
 	
-	
-
 	/**
 	 * Constructor que inicializa el partido con todos los parámetros
 	 * 
@@ -47,10 +46,8 @@ public class Partido {
 		this.equipoV = equipoV;
 		this.fInicApuesta = fInicioApuesta;
 		this.fFinApuesta = fFinApuesta;
-	
 		
 	}
-	
 	
 	
 	/**
@@ -68,11 +65,23 @@ public class Partido {
 	 */
 	
 	public String verInfoCompleta() {
-		String ficha = "Partido " + idPartido + ": " + equipoL + "-" + equipoV + "(admite apuestas entre " + fInicApuesta.getTime().toLocaleString() + " y " + fFinApuesta.getTime().toLocaleString() + ")";
+		String ficha = "Partido " + idPartido + ": " + equipoL + "-" + equipoV + "(admite apuestas entre " + verFecha(fInicApuesta) + " y " + verFecha(fFinApuesta) + ")";
 		return ficha;
 	}
 	
-	
+	/**
+	 * Muestra la fecha del partido en el formato que se ha indicado. Sustituye al método en desuso toLocaleString
+	 * 
+	 * @param c1 La fecha que queremos mostrar
+	 * @return
+	 */
+	public String verFecha(Calendar c1)
+	{
+		//SimpleDateFormat nos permite introducir un formato personalizado, en vez de estar llamando a Calendar para la hora, mes, etc.
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MMMMM/yyyy 'a las' hh:mm:ss");
+		return sdf.format(c1.getTime());
+		
+	}
 	
 	/**
 	 * @return the idPartido
@@ -137,7 +146,21 @@ public class Partido {
 	}
 
 
+
+	public void setResultadoPartido(TipoApuesta tApuesta, String resultado) {
+		listaResultados.put(tApuesta,resultado);
+	}
+
+
+
+	public void pagarApuestas(TipoApuesta tApuesta) {
+		
+		listaContenedorApuestas.get(tApuesta).pagarApuestas(listaResultados);
+		
+		
+	}
+
+
+
 }
-
-
 	
