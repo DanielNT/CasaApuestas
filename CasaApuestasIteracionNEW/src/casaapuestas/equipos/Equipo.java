@@ -1,6 +1,16 @@
 package casaapuestas.equipos;
 
+import casaapuestas.apuestas.*;
+import casaapuestas.arranque.*;
+import casaapuestas.cuentas.*;
+import casaapuestas.partidos.*;
+import casaapuestas.usuarios.*;
 
+
+/**
+ * @author Iss002
+ * Clase que representa a un Equipo en la casa de apuestas.
+ */
 public class Equipo {
 	
 	private String nombre;
@@ -10,8 +20,10 @@ public class Equipo {
 	 * Constructor del equipo
 	 * 
 	 * @param nombreEquipo nombre del equipo
+	 * @param nombreCompleto Nombre completo del Equipo
 	 */
 	public Equipo(String nombreEquipo, String nombreCompleto){
+		super();
 		this.nombre = nombreEquipo;
 		this.nombreCompleto = nombreCompleto;
 	}
@@ -31,6 +43,25 @@ public class Equipo {
 	 * @return lo que pongamos
 	 */
 	public String verInfoCompleta() {
+		return nombre + " (" + nombreCompleto + ")";
+	}
+
+	
+	/**
+	* Muestra el nombre
+	* 
+	* @return el nombre
+	*/
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	* Muestra el nombre completo
+	* 
+	* @return el nombre completo
+	*/
+	public String getNombreCompleto() {
 		return nombreCompleto;
 	}
 	

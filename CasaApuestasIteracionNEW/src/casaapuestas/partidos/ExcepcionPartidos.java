@@ -1,9 +1,9 @@
 package casaapuestas.partidos;
 
 /**
- * Clase de excepción que se lanzará cuando se intente realizar una operación no permitida con usuarios
+ * Clase de excepción que se lanzará cuando se intente realizar una operación no permitida con partidos
  * 
- * @author Eduardo Gómez Sánchez, ETSIT UVa.
+ * @author Iss002
  */
 public class ExcepcionPartidos extends Exception {
 
@@ -18,6 +18,7 @@ public class ExcepcionPartidos extends Exception {
 	 * Constructor que permite crear una excepción al operar sobre usuarios
 	 * 
 	 * @param causa la causa de la excepción
+	 * @param idPartido El identificador del partido.
 	 * @param login el identificador de usuario usado en la operación que ha causado la excepción
 	 */
 	public ExcepcionPartidos(CausaExcepcionPartidos causa, String idPartido) {

@@ -5,6 +5,12 @@ import java.util.List;
 import casaapuestas.cuentas.Cuenta;
 import casaapuestas.cuentas.ExcepcionCuenta;
 
+import casaapuestas.apuestas.*;
+import casaapuestas.arranque.*;
+import casaapuestas.cuentas.*;
+import casaapuestas.equipos.*;
+import casaapuestas.partidos.*;
+
 
 /**
  * Clase que representa a un Jugador en la casa de apuestas. Deriva de <code>Usuario</code>, añadiendo la posesión de una cuenta y métodos relacionados con las

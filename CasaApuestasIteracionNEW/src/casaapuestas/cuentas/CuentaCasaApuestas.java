@@ -1,8 +1,13 @@
 package casaapuestas.cuentas;
 
+import casaapuestas.apuestas.*;
+import casaapuestas.arranque.*;
+import casaapuestas.equipos.*;
+import casaapuestas.partidos.*;
+import casaapuestas.usuarios.*;
+
 /**
- * @info Clase de tipo sigleton que gestiona la cuenta de la casa de apuestas
- *
+ * Clase de tipo singleton que gestiona la cuenta de la casa de apuestas
  */
 public class CuentaCasaApuestas {
 	

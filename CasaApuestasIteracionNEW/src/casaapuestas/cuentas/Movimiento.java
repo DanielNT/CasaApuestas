@@ -4,6 +4,12 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import casaapuestas.apuestas.*;
+import casaapuestas.arranque.*;
+import casaapuestas.equipos.*;
+import casaapuestas.partidos.*;
+import casaapuestas.usuarios.*;
+
 /**
  * Clase que representa un movimiento en una cuenta. Tiene una fecha, que se asigna en la creación, un concepto y un importe. Ningún atributo puede moficarse.
  * 

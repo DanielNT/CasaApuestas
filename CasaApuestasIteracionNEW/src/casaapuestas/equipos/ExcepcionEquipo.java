@@ -1,9 +1,9 @@
 package casaapuestas.equipos;
 
 /**
- * Clase de excepción que se lanzará cuando se intente realizar una operación no permitida con usuarios
+ * Clase de excepción que se lanzará cuando se intente realizar una operación no permitida con equipos
  * 
- * @author Eduardo Gómez Sánchez, ETSIT UVa.
+ * @author Iss002
  */
 public class ExcepcionEquipo extends Exception {
 
@@ -18,7 +18,7 @@ public class ExcepcionEquipo extends Exception {
 	 * Constructor que permite crear una excepción al operar sobre usuarios
 	 * 
 	 * @param causa la causa de la excepción
-	 * @param login el identificador de usuario usado en la operación que ha causado la excepción
+	 * @param nombre nombre del equipo
 	 */
 	public ExcepcionEquipo(CausaExcepcionEquipo causa, String nombre) {
 		super();
@@ -28,6 +28,9 @@ public class ExcepcionEquipo extends Exception {
 	}
 
 	
+	/**
+	 * @return el identificador del equipo
+	 */
 	public String getIdEquipo() {
 		return idEquipo;
 	}

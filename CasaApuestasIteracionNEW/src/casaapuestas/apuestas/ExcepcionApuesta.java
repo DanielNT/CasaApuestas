@@ -11,7 +11,7 @@ public class ExcepcionApuesta extends Exception {
 	private static final long serialVersionUID = 1L;
 	/** El login usado en la operación que ha dado lugar a la excepción */
 	private String login;
-	/** La causa de la excecpción */
+	/** La causa de la excepción */
 	private CausaExcepcionApuestas causa;
 
 	
@@ -29,6 +29,11 @@ public class ExcepcionApuesta extends Exception {
 	}
 
 	
+	/**
+	 * Método que devuelve el login
+	 * 
+	 * @return el login
+	 */
 	public String getLogin() {
 		return login;
 	}
@@ -42,4 +47,6 @@ public class ExcepcionApuesta extends Exception {
 		return causa;
 	}
 
+	
+	
 }

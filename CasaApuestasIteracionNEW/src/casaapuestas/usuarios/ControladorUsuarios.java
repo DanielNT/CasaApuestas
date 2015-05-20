@@ -6,12 +6,17 @@ import java.util.List;
 import java.util.Map;
 
 import casaapuestas.cuentas.ExcepcionCuenta;
+import casaapuestas.apuestas.*;
+import casaapuestas.arranque.*;
+import casaapuestas.cuentas.*;
+import casaapuestas.equipos.*;
+import casaapuestas.partidos.*;
 
 
 /**
  * Clase controladora que recibe los métodos provenientes de la UI relacionados con la gestión de usuarios
  * 
- * @author Eduardo Gómez Sánchez, ETSIT UVa. +iss002
+ * @author Eduardo Gómez Sánchez, ETSIT UVa.
  */
 public class ControladorUsuarios {
 	/**
@@ -28,7 +33,6 @@ public class ControladorUsuarios {
 		listaJugadores = new HashMap<String, Jugador>();
 	}
 
-	
 	/**
 	 * Método que crea una nueva instancia de <code>Jugador</code> y la colecciona, indexada por el <code>login</code>
 	 * 
@@ -165,26 +169,6 @@ public class ControladorUsuarios {
 			throw new ExcepcionUsuario(CausaExcepcionUsuario.NO_EXISTE, login);
 		}
 	}
-	
-	/**
-	 * Realiza apuesta de una <code>cantidad</code>en la cuenta de un jugador
-	 * 
-	 * @param login El login del usuario
-	 * @param cantidad La cantidad de apostada
-	 * @throws ExcepcionUsuario si algo sale mal
-	 */
-	public void realizarApuestaJugador(String login, float cantidad, String eqLocal, String eqVisitante) throws ExcepcionUsuario {
-		// Recupera la instancia de la colección
-		Jugador esteJugador = listaJugadores.get(login);
-		// Si este jugador existía, no es null
-		if (esteJugador != null) {
-			// Así que delegamos en él que realice el ingreso negativo (por ello se le suma la cantidad cambiada de signo)
-			esteJugador.realizarIngreso("Pago de apuesta sobre " + eqLocal + "-" + eqVisitante, -cantidad);
-		} else {
-			// Pero si no existía lanza una excepción
-			throw new ExcepcionUsuario(CausaExcepcionUsuario.NO_EXISTE, login);
-		}
-	}
 
 	/**
 	 * Método que permite realizar un reintegro de una <code>cantidad</code> de dinero desde la cuenta del jugador identificado por el <code>login</code>
@@ -244,5 +228,92 @@ public class ControladorUsuarios {
 			throw new ExcepcionUsuario(CausaExcepcionUsuario.NO_EXISTE, login);
 		}
 	}
+	
+	
+	
+
+
+	/**
+	 * Método que permite obtener un jugador mediante su login.
+	 * @param login
+	 * @return
+	 * @throws ExcepcionUsuario
+	 */
+	public Jugador getJugador(String login) throws ExcepcionUsuario {
+		
+		// Recupera la instancia de la colección
+		Jugador esteJugador = listaJugadores.get(login);
+		
+		// Si el jugador no existe lanza una excepcion
+		if (esteJugador == null) 
+		{
+			throw new ExcepcionUsuario(CausaExcepcionUsuario.NO_EXISTE, login);
+		} 
+		
+		return esteJugador;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// |------------------------------|
+	
+	
+	/**
+	 * Método que permite realizar un ingreso de una <code>cantidad</code> de dinero en la cuenta del jugador identificado por el <code>login</code>
+	 * 
+	 * @param login El login, o identificador único de usuario
+	 * @param cantidad La cantidad a ingresar en la cuenta (positiva)
+	 * @throws ExcepcionUsuario Se produce si el usuario no existe
+	 */
+	public void cobroDePremioEnCuentaJugador(String login, String equipos, float cantidad) throws ExcepcionUsuario {
+		// Recupera la instancia de la colección
+		Jugador esteJugador = listaJugadores.get(login);
+		// Si este jugador existía, no es null
+		if (esteJugador != null) {
+			// Así que delegamos en él que realice el ingreso
+			esteJugador.realizarIngreso("Pago de apuesta sobre " + equipos, cantidad);
+		} else {
+			// Pero si no existía lanza una excepción
+			throw new ExcepcionUsuario(CausaExcepcionUsuario.NO_EXISTE, login);
+		}
+	}
+	
+	
+	
+
+	
+	
+//	/**
+//	 * Realiza apuesta de una <code>cantidad</code>en la cuenta de un jugador
+//	 * 
+//	 * @param login El login del usuario
+//	 * @param cantidad La cantidad de apostada
+//	 * @param eqLocal Nombre del equipo local
+//	 * @param eqVisitante Nombre del equipo visitante
+//	 * @throws ExcepcionUsuario Si algo sale mal
+//	 */
+//	public void realizarApuestaJugador(String login, float cantidad, String eqLocal, String eqVisitante) throws ExcepcionUsuario {
+//		// Recupera la instancia de la colección
+//		Jugador esteJugador = listaJugadores.get(login);
+//		// Si este jugador existía, no es null
+//		if (esteJugador != null) {
+//			// Así que delegamos en él que realice el ingreso negativo (por ello se le suma la cantidad cambiada de signo)
+//			esteJugador.realizarIngreso("Pago de apuesta sobre " + eqLocal + "-" + eqVisitante, -cantidad);
+//		} else {
+//			// Pero si no existía lanza una excepción
+//			throw new ExcepcionUsuario(CausaExcepcionUsuario.NO_EXISTE, login);
+//		}
+//	}
+	
+	
+	
+	
 	
 }

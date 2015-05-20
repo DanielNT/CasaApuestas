@@ -1,52 +1,89 @@
 package casaapuestas.apuestas;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Calendar;
+
+import casaapuestas.arranque.*;
+import casaapuestas.cuentas.*;
+import casaapuestas.equipos.*;
+import casaapuestas.partidos.*;
+import casaapuestas.usuarios.*;
+
 
 
 /**
  * @author iss002
- *
+ * Clase que representa a una Apuesta en la casa de apuestas.
  */
 public class Apuesta {
 	
+	private TipoApuesta tApuesta;
+	private Jugador jugadorQueApuesta;
+	//private Calendar fechaDeApuesta;
 	private float cantidadApostada;
-	private String login;
-	private String idPartido;
-	private TipoApuesta tipoApuesta;
 	private String resultado;
-	private String eqLocal;
-	private String eqVisitante;
+	private String equipos;
+	private boolean resolucion;		// Atributo innecesario o no utilizado por ahora. Cuando se necesite ya se quitara este comentario y otros correspondientes.
 
 	
 
+	
 	/**
 	 * Constructor que crea una instancia de apuesta
-	 * 
-	 * @param login El login del usuario
-	 * @param idPartido El id del partido
-	 * @param tApuesta Tipo de la apuesta (Marcador o quiniela)
-	 * @param resultado Resultado, depende del modo
-	 * @param cantidadApostada Cantidad que se apuesta (con decimales)
+	 * @param jugadorQueApuesta
+	 * @param tApuesta 
+	 * @param cantidadApostada
+	 * @param resultado
 	 */
-	public Apuesta(String login, String idPartido, TipoApuesta tApuesta, String resultado,float cantidadApostada, String eqLocal, String eqVisitante){
+	public Apuesta(Jugador jugadorQueApuesta, TipoApuesta tApuesta, float cantidadApostada, String resultado, String equipos){
+	//public Apuesta(Jugador jugadorQueApuesta, Calendar fechaDeApuesta, float cantidadApostada, String resultado){
 		
-		this.login=login;
-		this.idPartido= idPartido;
-		this.tipoApuesta=tApuesta;
+		super();
+		this.tApuesta = tApuesta;
+		this.jugadorQueApuesta = jugadorQueApuesta;
+		//this.fechaDeApuesta = fechaDeApuesta;
+		this.cantidadApostada = cantidadApostada;
 		this.resultado=resultado;
-		this.cantidadApostada=cantidadApostada;
-		this.eqLocal=eqLocal;
-		this.eqVisitante=eqVisitante;
+		this.equipos = equipos;
+		resolucion = false;
 		
 	}
-
+	
+	
+	
+	/**
+	 * @return La informacion de la apuesta
+	 */
 	public String verInfoApuesta(){
 		
-		String info= "La apuesta de tipo " + tipoApuesta + ": El jugador '" + login + "' ha apostado " + cantidadApostada + " al resultado '" + resultado + "' en el partido " + eqLocal + "-" + eqVisitante;
+		String info = "La apuesta de tipo " + tApuesta + ": El jugador '" + jugadorQueApuesta.getLogin() + "' ha apostado " + cantidadApostada + " al resultado '" + resultado + "' en el partido " + equipos;
 		return info;
 	}
-	
-	
-	
+
+
+
+
+	/**
+	 * @return the resolucion
+	 */
+	public boolean isResolucion() {
+		return resolucion;
+	}
+
+
+
+
+	/**
+	 * @param resolucion the resolucion to set
+	 */
+	public void setResolucion(boolean resolucion) {
+		this.resolucion = resolucion;
+	}
+
+
+
+
 	/**
 	 * @return the cantidadApostada
 	 */
@@ -54,66 +91,6 @@ public class Apuesta {
 		return cantidadApostada;
 	}
 
-
-	/**
-	 * @param cantidadApostada the cantidadApostada to set
-	 */
-	public void setCantidadApostada(float cantidadApostada) {
-		this.cantidadApostada = cantidadApostada;
-	}
-
-
-
-	/**
-	 * @return the login
-	 */
-	public String getLogin() {
-		return login;
-	}
-
-
-	/**
-	 * @param login the login to set
-	 */
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-
-
-	/**
-	 * @return the idPartido
-	 */
-	public String getIdPartido() {
-		return idPartido;
-	}
-
-
-
-	/**
-	 * @param idPartido the idPartido to set
-	 */
-	public void setIdPartido(String idPartido) {
-		this.idPartido = idPartido;
-	}
-
-
-
-	/**
-	 * @return the tipoApuesta
-	 */
-	public TipoApuesta getTipoApuesta() {
-		return tipoApuesta;
-	}
-
-
-
-	/**
-	 * @param tipoApuesta the tipoApuesta to set
-	 */
-	public void setTipoApuesta(TipoApuesta tipoApuesta) {
-		this.tipoApuesta = tipoApuesta;
-	}
 
 
 
@@ -123,43 +100,69 @@ public class Apuesta {
 	public String getResultado() {
 		return resultado;
 	}
-
-
-
-	/**
-	 * @param resultado the resultado to set
-	 */
-	public void setResultado(String resultado) {
-		this.resultado = resultado;
+	
+	
+	
+	public void realizarTransaccionApuesta() throws ExcepcionCuenta{
+		CuentaCasaApuestas CCA = CuentaCasaApuestas.getInstance();
+		
+		jugadorQueApuesta.realizarReintegro("Pago de apuesta sobre " + equipos, cantidadApostada);
+		CCA.add(cantidadApostada);
 	}
+	
+	
+	
+	// |------------------------------|
+
+	
+	public Jugador getJugador() {
+		return jugadorQueApuesta;
+	}
+	
+	public String getEquipos(){
+		return equipos;
+	}
+	
+	
+	
 
 //	/**
-//	 * @return the eqLocal
+//	 * @return the resolucion
 //	 */
-//	private String getEqLocal() {
-//		return eqLocal;
+//	public boolean isResolucion() {
+//		return resolucion;
 //	}
 //
-//	/**
-//	 * @param eqLocal the eqLocal to set
-//	 */
-//	private void setEqLocal(String eqLocal) {
-//		this.eqLocal = eqLocal;
-//	}
 //
 //	/**
-//	 * @return the eqVisitante
+//	 * @return the listaJugadores
 //	 */
-//	private String getEqVisitante() {
-//		return eqVisitante;
+//	public Map<String, Jugador> getListaJugadores() {
+//		return listaJugadores;
+//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	/**
+//	 * @return the resolucion
+//	 */
+//	public boolean getResolucion() {
+//		return resolucion;
 //	}
 //
-//	/**
-//	 * @param eqVisitante the eqVisitante to set
-//	 */
-//	private void setEqVisitante(String eqVisitante) {
-//		this.eqVisitante = eqVisitante;
-//	}
 //	
+//	public void setResolucion(boolean resolucion){
+//		this.resolucion=resolucion;
+//	}
+	
+	
 
 }

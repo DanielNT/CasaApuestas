@@ -11,6 +11,11 @@ import casaapuestas.partidos.ExcepcionPartidos;
 import casaapuestas.usuarios.ControladorUsuarios;
 import casaapuestas.usuarios.ExcepcionUsuario;
 import casaapuestas.usuarios.MetodoMensajeria;
+import casaapuestas.apuestas.*;
+import casaapuestas.cuentas.*;
+import casaapuestas.equipos.*;
+import casaapuestas.partidos.*;
+import casaapuestas.usuarios.*;
 
 /**
  * Clase con un main() de pruebas para la iteración 0, entregada por el profesor.
@@ -23,9 +28,11 @@ public class PruebasCasaApuestas1 {
 	 * Método main(). No se esperan parámetros.
 	 * @param args parámetros en línea de comandos, pero se ignoran.
 	 */
-	public static void main(String[] args) {
+	public static void main(String args[]) {
 		//Crea una instancia de controlador de usuarios
 		ControladorUsuarios cu = new ControladorUsuarios();
+		
+		
 		//Crea una instancia de controlador de partidos
 		ControladorPartidos cp = new ControladorPartidos(cu);
 		
@@ -78,11 +85,11 @@ public class PruebasCasaApuestas1 {
 			//Se crea una fecha de inicio de las apuestas, que se fija al 17 de abril de 2015, a las 8:00
 			Calendar inicioApuestas = Calendar.getInstance();
 			inicioApuestas.clear();
-			inicioApuestas.set(2015, Calendar.APRIL, 17, 8, 0);
+			inicioApuestas.set(2015, Calendar.MAY, 17, 8, 0);
 			//Se crea una fecha de fin de las apuestas, que se fija al 19 de abril de 2015, a las 19:30
 			Calendar finApuestas = Calendar.getInstance();
 			finApuestas.clear();
-			finApuestas.set(2015, Calendar.APRIL, 19, 19, 30);
+			finApuestas.set(2015, Calendar.MAY, 28, 19, 30);
 			//Se crean otras dos fechas de inicio y fin de apuestas, para el fin de semana siguiente
 			Calendar inicioApuestas2 = Calendar.getInstance();
 			inicioApuestas2.clear();
@@ -134,8 +141,8 @@ public class PruebasCasaApuestas1 {
 			cp.añadirPartido("Burgos", "Zamora", inicioApuestas2, finApuestas2);
 
 			//Caso de uso "ver partido"
-			System.out.println("\nMuestro el partido con identificador 'p3', recién creado");
-			ficha = cp.mostrarPartido("p3");
+			System.out.println("\nMuestro el partido con identificador 'p2', recién creado");
+			ficha = cp.mostrarPartido("p2");
 			System.out.println(ficha);
 
 			
@@ -183,7 +190,11 @@ public class PruebasCasaApuestas1 {
 			catch (ExcepcionApuesta ea) {
 			//Si se llega hasta aquí alguna operación con apuestas ha ido mal
 			System.out.println("Ha fallado una operación de apuestas por la siguiente causa: " + ea.getCausa().toString());
-		}
+		} catch (ExcepcionCuenta ec) {
+			//Si se llega hasta aquí alguna operación con cuentas ha ido mal
+			System.out.println("Ha fallado una operación de cuentas por la siguiente causa: " + ec.getCausa().toString());
+			} 
+
 		
 		////////////////////////////////////////////////////////
 		// CASOS DE USO EN ESCENARIOS DE FALLO
@@ -314,7 +325,10 @@ public class PruebasCasaApuestas1 {
 		} catch (ExcepcionApuesta ea) {
 			//Si se llega hasta aquí alguna operación con apuestas ha ido mal
 			System.out.println("Ha fallado una operación de apuestas por la siguiente causa: " + ea.getCausa().toString());
-		}
+		} catch (ExcepcionCuenta ec) {
+			//Si se llega hasta aquí alguna operación con cuentas ha ido mal
+			System.out.println("Ha fallado una operación de cuentas por la siguiente causa: " + ec.getCausa().toString());
+		} 
 		
 		try {
 			//Caso de uso "crear apuesta": se intenta crear una apuesta sobre un partido que no acepta apuestas
@@ -329,7 +343,10 @@ public class PruebasCasaApuestas1 {
 		} catch (ExcepcionApuesta ea) {
 			//Si se llega hasta aquí alguna operación con apuestas ha ido mal
 			System.out.println("Ha fallado una operación de apuestas por la siguiente causa: " + ea.getCausa().toString());
-		}
+		} catch (ExcepcionCuenta ec) {
+			//Si se llega hasta aquí alguna operación con cuentas ha ido mal
+			System.out.println("Ha fallado una operación de cuentas por la siguiente causa: " + ec.getCausa().toString());
+		} 
 
 		try {
 			//Caso de uso "crear apuesta": se intenta crear una apuesta por encima del saldo del usuario
@@ -345,7 +362,10 @@ public class PruebasCasaApuestas1 {
 			//Si se llega hasta aquí alguna operación con apuestas ha ido mal
 			System.out.println("Ha fallado una operación de apuestas por la siguiente causa: " + ea.getCausa().toString());
 		
-	}
+		} catch (ExcepcionCuenta ec) {
+			//Si se llega hasta aquí alguna operación con cuentas ha ido mal
+			System.out.println("Ha fallado una operación de cuentas por la siguiente causa: " + ec.getCausa().toString());
+		} 
 	}
 }
 
