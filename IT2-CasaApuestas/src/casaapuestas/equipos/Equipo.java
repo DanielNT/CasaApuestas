@@ -23,8 +23,8 @@ public class Equipo {
 	}
 	
 	/**
-	 * Muestra la información básica del equipo. Sin ampliación hace la misma función
-	 * que getNombre
+	 * Muestra la información básica del equipo
+	 * 
 	 * @return lo que pongamos
 	 */
 	public String verInfoEquipo() {
@@ -40,20 +40,21 @@ public class Equipo {
 		return nombre + " (" + nombreCompleto + ")";
 	}
 
+	
 	/**
-	 * Muestra el nombre
-	 * 
-	 * @return el nombre
-	 */
+	* Muestra el nombre
+	* 
+	* @return el nombre
+	*/
 	public String getNombre() {
 		return nombre;
 	}
 
-    /**
-	 * Muestra el nombre completo
-	 * 
-	 * @return el nombre completo
-	 */
+	/**
+	* Muestra el nombre completo
+	* 
+	* @return el nombre completo
+	*/
 	public String getNombreCompleto() {
 		return nombreCompleto;
 	}

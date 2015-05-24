@@ -19,16 +19,24 @@ public enum CausaExcepcionPartidos {
 	 */
 	NO_EXISTE,
 	/**
-	 * Error al eliminar el partido.
-	 */
-	ERROR_ELIMINAR,
-	/**
 	 * No hay partidos abiertos a apuestas.
 	 */
 	NO_PART_ABIERTOS_APUESTAS,
 	/**
 	 * La fecha de inicio de apuestas es posterior a la de fin de apuestas.
 	 */
-	FECHAS_INCORRECTAS
+	FECHAS_INCORRECTAS,
+	/**
+	 * El partido aún no ha finalizado.
+	 */
+	PARTIDO_ABIERTO,
+	/**
+	 * El resultado para el partido ya existe.
+	 */
+	YA_EXISTE_RESULTADO,
+	/**
+	 * El partido sobre el que se quiere realizar la apuesta está cerrado a apuestas.
+	 */
+	PARTIDO_CERRADO
 	
 }

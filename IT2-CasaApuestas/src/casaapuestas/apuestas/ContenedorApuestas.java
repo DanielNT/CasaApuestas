@@ -1,140 +1,138 @@
 package casaapuestas.apuestas;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
-import casaapuestas.arranque.*;
 import casaapuestas.cuentas.*;
-import casaapuestas.equipos.*;
-import casaapuestas.partidos.*;
 import casaapuestas.usuarios.*;
+import casaapuestas.constantes.*;
 
+/**
+ * Contiene las apuestas de un partido para una única modalidad.
+ * @author ISS 002
+ *
+ */
 public class ContenedorApuestas {
 	
+	private boolean modalidadPagada;
 	/** La lista de apuestas del contenedor de apuestas */
 	private List<Apuesta> listadoApuestas;
 	
+	/**
+	 * Constructor de la clase ContenedorApuestas
+	 */
 	public ContenedorApuestas(){
 		
 		super();
+		modalidadPagada = false;
 		// Inicializa la lista de apuestas como un ArrayList vacío
 		listadoApuestas = new ArrayList<Apuesta>();
 
 	}
 	
-	public List<Apuesta> getApuesta(){
-		return listadoApuestas;
-	}
-
-	public void pagarApuestasCont(Map<TipoApuesta, String> listaResultados, String resultado, String eqLocal, String eqVisitante, ControladorUsuarios cu) throws ExcepcionUsuario {
 		
-		float cantidadApostada=0;
-		float totalGanador=0;
-		float ratio=(float) 0.8;
+	// |------------------------------|
+	
+	
+	/**
+	 * Este método crea la nueva Apuesta correspondiente a los parámetros que recibe.
+	 * @param jugadorQueApuesta
+	 * @param tApuesta 
+	 * @param cantidadApostada
+	 * @param resultado
+	 * @param equipos 
+	 * @throws ExcepcionCuenta 
+	 */
+	public void crearApuesta(Jugador jugadorQueApuesta, TipoApuesta tApuesta, float cantidadApostada, String resultado, String equipos) throws ExcepcionCuenta
+	{
 		
-		
-		//Buscamos las apuestas que correspondan
-		for(Apuesta a: listadoApuestas)
-		{
-			cantidadApostada = cantidadApostada + a.getCantidadApostada();
+//		//Obtiene la fecha actual del sistema.
+//		Calendar fechaDeApuesta = Calendar.getInstance();
+//		fechaDeApuesta.getTime();
 			
-			if(a.getResultado().equals(resultado)){
-				a.setResolucion(true);
-				totalGanador= totalGanador + a.getCantidadApostada();
-			}
-		}
-			
-		//Obtiene el ratio
-		ratio=(float) (0.8*cantidadApostada/totalGanador);
-			
-		//Y pagamos a las que ganan
-		for(Apuesta a: listadoApuestas){
-				
-			//Si la resolución es correcta, paga
-			if(a.getResolucion()==true){
-				cu.cobroDePremioEnCuentaJugador(a.getLogin(), eqLocal, eqVisitante,a.getCantidadApostada()*ratio);
-			}
-							
-								
-		}
-		
+		// Apuesta a = new Apuesta(jugadorQueApuesta, fechaDeApuesta, cantidadApostada, resultado, equipos);
+		Apuesta a = new Apuesta(jugadorQueApuesta, tApuesta, cantidadApostada, resultado, equipos);
+		a.realizarTransaccionApuesta();
+		listadoApuestas.add(a);
 	}
 	
+	
+	/**
+	 * Crea un nuevo listado con los partidos mostrando para cada uno una ficha breve.
+	 * 
+	 * @return el listado
+	 */
+	public List<String> listarApuestas() {
+		
+		List<String> listado = new ArrayList<String>();
+		
+		for (Apuesta a : listadoApuestas) {
+			String ficha = a.verInfoApuesta();
+			listado.add(ficha);
+		}
+		
+		return listado;
+	}
+	
+	
+	
+	
+	// |------------------------------|
+	
+	
+	
+	
+	
+	
+	/**
+	 * Este método tras comprobar que no estan aún pagadas sus apuestas, procede a pagar las apuestas realizadas para la modalidad solicitada.
+	 * @param resultado
+	 * @throws ExcepcionUsuario
+	 * @throws ExcepcionApuesta
+	 */
+	public void pagarApuestasContenedor(String resultado) throws ExcepcionUsuario, ExcepcionApuesta
+	{
+			
+		float totalApostado = (float) 0.0;
+		float totalGanador = (float) 0.0;
+		float ratio;
+		
+		for(Apuesta a: listadoApuestas)
+		{
+			// calcula la cantidad total que se ha apostado entre todas las apuestas.
+			totalApostado = totalApostado + a.getCantidadApostada();
+			
+			if(a.getResultado().equals(resultado))
+			{
+				// calcula cuanto del total apostado proviene de apuestas ganadoras.
+				totalGanador = totalGanador + a.getCantidadApostada();
+			}
+		}
+			
+		// Obtiene el ratio de pago de premios.
+		ratio = (float) Constantes.RATIO_PAGO*totalApostado/totalGanador;
+			
+		// Se pagan las apuestas ganadoras.
+		for(Apuesta a: listadoApuestas)
+		{
+			if(a.getResultado().equals(resultado))
+			{
+				a.realizarPagoApuestaGanadora(ratio);
+			}							
+		}
+			
+		modalidadPagada = true;
+	}
+
+	// |------------------------------|
+	
+	
+	/**
+	 * @return the modalidadPagada
+	 */
+	public boolean isModalidadPagada() {
+		return modalidadPagada;
+	}
+	
+	
 }
-
-
-//Map<TipoApuesta, ContenedorApuestas> mapaContainer= null;
-//String resultado = null;
-//float cantidadApostada=0;
-//float totalGanador=0;
-//float ratio=(float) 0.8;
-
-
-
-
-
-//for (Partido part : listaPartidos.values()) {
-//
-//	if(part.getIdPartido().equals(idPartido)){
-//		
-//		mapaContainer=part.verApuestasPartido();
-//
-//		if(!mapaContainer.containsKey(tApuesta)){
-//			//No hay apuestas para pagar
-//		}
-//		
-//		for(Entry<TipoApuesta, String> result : listaResultados.entrySet()){
-//		 
-//			if(result.getKey().equals(tApuesta)){
-//				resultado=result.getValue();
-//			}
-//		}
-//
-//		
-//		for(ContenedorApuestas ca: mapaContainer.values()){
-//			
-//			
-//			for(Entry<TipoApuesta, ContenedorApuestas> cApuesta : mapaContainer.entrySet()){
-//			
-//				if(cApuesta.getKey().equals(tApuesta)){
-//					//Determina si gana o no
-//					
-//					List<Apuesta> lApuesta= cApuesta.getValue().getApuesta();
-//					
-//					
-//					for(Apuesta a: lApuesta){
-//						cantidadApostada = cantidadApostada + a.getCantidadApostada();
-//						
-//						if(a.getResultado().equals(resultado)){
-//							a.setResolucion(true);
-//							totalGanador= totalGanador + a.getCantidadApostada();
-//						}
-//						
-//					}
-//					
-//					//Obtiene el ratio
-//					ratio=(float) (0.8*cantidadApostada/totalGanador);
-//				
-//					for(Apuesta a: lApuesta){
-//		
-//						//Si la resolución es correcta, paga
-//						if(a.getResolucion()==true){
-//							cu.realizarIngresoEnCuentaJugador(a.getLogin(), a.getCantidadApostada()*ratio);
-//						}
-//					
-//						
-//					}
-//				
-//				
-//				}
-//				
-//			}
-//			
-//		}
-//	}
-//}

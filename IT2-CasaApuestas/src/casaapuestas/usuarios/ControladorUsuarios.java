@@ -8,10 +8,12 @@ import java.util.Map;
 import casaapuestas.cuentas.ExcepcionCuenta;
 
 
+
+
 /**
  * Clase controladora que recibe los métodos provenientes de la UI relacionados con la gestión de usuarios
  * 
- * @author Eduardo Gómez Sánchez, ETSIT UVa. +iss002
+ * @author Eduardo Gómez Sánchez, ETSIT UVa.
  */
 public class ControladorUsuarios {
 	/**
@@ -27,20 +29,47 @@ public class ControladorUsuarios {
 		// Inicializa las colecciones
 		listaJugadores = new HashMap<String, Jugador>();
 	}
-
 	
+	
+	
+	// |------------------------------|
+	
+	
+	/**
+	 * Método que permite obtener una lista de cadenas, cada una con información breve de cada instancia de <code>Jugador</code> coleccionada por este
+	 * controlador.
+	 * 
+	 * @return Una lista de cadenas
+	 */
+	public List<String> listarJugadores() {
+		// Inicializa la lista
+		List<String> listado = new ArrayList<String>();
+
+		// Recorre la colección de jugadores
+		for (Jugador j : listaJugadores.values()) {
+			// A cada jugador le pide información breve
+			String ficha = j.verFichaBreve();
+			// Y la añade al listado
+			listado.add(ficha);
+		}
+
+		// Al terminar retorna el listado
+		return listado;
+	}
+	
+
 	/**
 	 * Método que crea una nueva instancia de <code>Jugador</code> y la colecciona, indexada por el <code>login</code>
 	 * 
-	 * @param login El login, o identificador único de usuario
-	 * @param clave La clave del usuario (en claro)
-	 * @param nombre El nombre del usuario
-	 * @param apellidos Los apellidos del usuario
-	 * @param nif El NIF del usuario
-	 * @param movil El número de teléfono del usuario
-	 * @param correo La dirección de correo del usuario
-	 * @param metodo El método de mensajería preferido por el usuario
-	 * @throws ExcepcionUsuario Se produce una excepción si ya existe un usuario con este <code>login</code>
+	 * @param login el login, o identificador único de usuario
+	 * @param clave la clave del usuario (en claro)
+	 * @param nombre el nombre del usuario
+	 * @param apellidos los apellidos del usuario
+	 * @param nif el NIF del usuario
+	 * @param movil el número de teléfono del usuario
+	 * @param correo la dirección de correo del usuario
+	 * @param metodo el método de mensajería preferido por el usuario
+	 * @throws ExcepcionUsuario si ya existe un usuario con este <code>login</code>
 	 */
 	public void crearJugador(String login, String clave, String nombre, String apellidos, String nif, String movil, String correo, MetodoMensajeria metodo)
 			throws ExcepcionUsuario {
@@ -79,15 +108,15 @@ public class ControladorUsuarios {
 	/**
 	 * Método que modifica una instancia de <code>Jugador</code> dada por un determinado <code>login</code>
 	 * 
-	 * @param login El login, o identificador único de usuario (no se puede modificar)
-	 * @param clave La clave del usuario 
-	 * @param nombre El nombre del usuario
-	 * @param apellidos Los apellidos del usuario
-	 * @param nif El NIF del usuario
-	 * @param movil El número de teléfono del usuario
-	 * @param correo La dirección de correo del usuario
-	 * @param metodo El método de mensajería preferido por el usuario
-	 * @throws ExcepcionUsuario Se produce una excepción si no existe un usuario con este <code>login</code>
+	 * @param login el login, o identificador único de usuario (no se puede modificar)
+	 * @param clave la clave del usuario (en claro)
+	 * @param nombre el nombre del usuario
+	 * @param apellidos los apellidos del usuario
+	 * @param nif el NIF del usuario
+	 * @param movil el número de teléfono del usuario
+	 * @param correo la dirección de correo del usuario
+	 * @param metodo el método de mensajería preferido por el usuario
+	 * @throws ExcepcionUsuario si no existe un usuario con este <code>login</code>
 	 */
 	public void modificarJugador(String login, String clave, String nombre, String apellidos, String nif, String movil, String correo, MetodoMensajeria metodo)
 			throws ExcepcionUsuario {
@@ -112,8 +141,8 @@ public class ControladorUsuarios {
 	/**
 	 * Método que permite borrar una instancia de <code>Jugador</code> dada por un determinado <code>login</code>
 	 * 
-	 * @param login El login, o identificador único de usuario
-	 * @throws ExcepcionUsuario Si no existe un usuario con este <code>login</code>
+	 * @param login el login, o identificador único de usuario
+	 * @throws ExcepcionUsuario si no existe un usuario con este <code>login</code>
 	 */
 	public void eliminarJugador(String login) throws ExcepcionUsuario {
 		// Borra la instancia de la colección
@@ -123,92 +152,30 @@ public class ControladorUsuarios {
 			throw new ExcepcionUsuario(CausaExcepcionUsuario.NO_EXISTE, login);
 		}
 	}
-
+	
 	/**
-	 * Método que permite obtener una lista de cadenas, cada una con información breve de cada instancia de <code>Jugador</code> coleccionada por este
-	 * controlador.
-	 * 
-	 * @return Una lista de cadenas
+	 * Método que permite obtener un jugador mediante su login.
+	 * @param login
+	 * @return el jugador
+	 * @throws ExcepcionUsuario
 	 */
-	public List<String> listarJugadores() {
-		// Inicializa la lista
-		List<String> listado = new ArrayList<String>();
-
-		// Recorre la colección de jugadores
-		for (Jugador j : listaJugadores.values()) {
-			// A cada jugador le pide información breve
-			String ficha = j.verFichaBreve();
-			// Y la añade al listado
-			listado.add(ficha);
-		}
-
-		// Al terminar retorna el listado
-		return listado;
-	}
-
-	/**
-	 * Método que permite realizar un ingreso de una <code>cantidad</code> de dinero en la cuenta del jugador identificado por el <code>login</code>
-	 * 
-	 * @param login El login, o identificador único de usuario
-	 * @param cantidad La cantidad a ingresar en la cuenta (positiva)
-	 * @throws ExcepcionUsuario Se produce si el usuario no existe
-	 */
-	public void realizarIngresoEnCuentaJugador(String login, float cantidad) throws ExcepcionUsuario {
+	public Jugador getJugador(String login) throws ExcepcionUsuario {
+		
 		// Recupera la instancia de la colección
 		Jugador esteJugador = listaJugadores.get(login);
-		// Si este jugador existía, no es null
-		if (esteJugador != null) {
-			// Así que delegamos en él que realice el ingreso
-			esteJugador.realizarIngreso("Ingreso en efectivo por el usuario " + login, cantidad);
-		} else {
-			// Pero si no existía lanza una excepción
+		
+		// Si el jugador no existe lanza una excepcion
+		if (esteJugador == null) 
+		{
 			throw new ExcepcionUsuario(CausaExcepcionUsuario.NO_EXISTE, login);
-		}
+		} 
+		
+		return esteJugador;
 	}
 	
 	
-	/**
-	 * Realiza apuesta de una <code>cantidad</code>en la cuenta de un jugador
-	 * 
-	 * @param login El login del usuario
-	 * @param cantidad La cantidad de apostada
-	 * @param eqLocal Nombre del equipo local
-	 * @param eqVisitante Nombre del equipo visitante
-	 * @throws ExcepcionUsuario Si algo sale mal
-	 */
-	public void realizarApuestaJugador(String login, float cantidad, String eqLocal, String eqVisitante) throws ExcepcionUsuario {
-		// Recupera la instancia de la colección
-		Jugador esteJugador = listaJugadores.get(login);
-		// Si este jugador existía, no es null
-		if (esteJugador != null) {
-			// Así que delegamos en él que realice el ingreso negativo (por ello se le suma la cantidad cambiada de signo)
-			esteJugador.realizarIngreso("Pago de apuesta sobre " + eqLocal + "-" + eqVisitante, -cantidad);
-		} else {
-			// Pero si no existía lanza una excepción
-			throw new ExcepcionUsuario(CausaExcepcionUsuario.NO_EXISTE, login);
-		}
-	}
-
-	/**
-	 * Método que permite realizar un reintegro de una <code>cantidad</code> de dinero desde la cuenta del jugador identificado por el <code>login</code>
-	 * 
-	 * @param login El login, o identificador único de usuario
-	 * @param cantidad La cantidad a reintegrar desde la cuenta (positiva)
-	 * @throws ExcepcionUsuario Si el usuario no existe
-	 * @throws ExcepcionCuenta Si la cuenta no tiene saldo suficiente para reintegrar dicha cantidad
-	 */
-	public void realizarReintegroDesdeCuentaJugador(String login, float cantidad) throws ExcepcionUsuario, ExcepcionCuenta {
-		// Recupera la instancia de la colección
-		Jugador esteJugador = listaJugadores.get(login);
-		// Si este jugador existía, no es null
-		if (esteJugador != null) {
-			// Así que delegamos en él que realice el ingreso (ojo, este método lanza una excepción)
-			esteJugador.realizarReintegro("Reintegro en efectivo por el usuario " + login, cantidad);
-		} else {
-			// Pero si no existía lanza una excepción
-			throw new ExcepcionUsuario(CausaExcepcionUsuario.NO_EXISTE, login);
-		}
-	}
+	// |------------------------------|
+	
 	
 	/**
 	 * Método que permite ver el saldo en la cuenta del jugador identificado por el <code>login</code>
@@ -248,24 +215,55 @@ public class ControladorUsuarios {
 		}
 	}
 	
-	
+
 	/**
 	 * Método que permite realizar un ingreso de una <code>cantidad</code> de dinero en la cuenta del jugador identificado por el <code>login</code>
 	 * 
-	 * @param login El login, o identificador único de usuario
-	 * @param cantidad La cantidad a ingresar en la cuenta (positiva)
-	 * @throws ExcepcionUsuario Se produce si el usuario no existe
+	 * @param login el login, o identificador único de usuario
+	 * @param cantidad la cantidad a ingresar en la cuenta (positiva)
+	 * @throws ExcepcionUsuario si el usuario no existe
 	 */
-	public void cobroDePremioEnCuentaJugador(String login, String eqLocal, String eqVisitante, float cantidad) throws ExcepcionUsuario {
+	public void realizarIngresoEnCuentaJugador(String login, float cantidad) throws ExcepcionUsuario {
 		// Recupera la instancia de la colección
 		Jugador esteJugador = listaJugadores.get(login);
 		// Si este jugador existía, no es null
 		if (esteJugador != null) {
 			// Así que delegamos en él que realice el ingreso
-			esteJugador.realizarIngreso("Pago de apuesta sobre " + eqLocal + "-" + eqVisitante, cantidad);
+			esteJugador.realizarIngreso("Ingreso en efectivo por el usuario " + login, cantidad);
 		} else {
 			// Pero si no existía lanza una excepción
 			throw new ExcepcionUsuario(CausaExcepcionUsuario.NO_EXISTE, login);
 		}
 	}
+
+	/**
+	 * Método que permite realizar un reintegro de una <code>cantidad</code> de dinero desde la cuenta del jugador identificado por el <code>login</code>
+	 * 
+	 * @param login el login, o identificador único de usuario
+	 * @param cantidad la cantidad a reintegrar desde la cuenta (positiva)
+	 * @throws ExcepcionUsuario si el usuario no existe
+	 * @throws ExcepcionCuenta si la cuenta no tiene saldo suficiente para reintegrar dicha cantidad
+	 */
+	public void realizarReintegroDesdeCuentaJugador(String login, float cantidad) throws ExcepcionUsuario, ExcepcionCuenta {
+		// Recupera la instancia de la colección
+		Jugador esteJugador = listaJugadores.get(login);
+		// Si este jugador existía, no es null
+		if (esteJugador != null) {
+			// Así que delegamos en él que realice el ingreso (ojo, este método lanza una excepción)
+			esteJugador.realizarReintegro("Reintegro en efectivo por el usuario " + login, cantidad);
+		} else {
+			// Pero si no existía lanza una excepción
+			throw new ExcepcionUsuario(CausaExcepcionUsuario.NO_EXISTE, login);
+		}
+	}
+	
+	
+	
+	
+	
+	
+	// |------------------------------|
+	
+	
+	
 }

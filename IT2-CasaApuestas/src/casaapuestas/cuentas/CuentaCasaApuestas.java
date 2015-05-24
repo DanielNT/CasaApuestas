@@ -1,11 +1,5 @@
 package casaapuestas.cuentas;
 
-import casaapuestas.apuestas.*;
-import casaapuestas.arranque.*;
-import casaapuestas.equipos.*;
-import casaapuestas.partidos.*;
-import casaapuestas.usuarios.*;
-
 /**
  * Clase de tipo singleton que gestiona la cuenta de la casa de apuestas
  */

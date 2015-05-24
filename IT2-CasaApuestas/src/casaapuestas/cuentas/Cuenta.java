@@ -3,12 +3,6 @@ package casaapuestas.cuentas;
 import java.util.ArrayList;
 import java.util.List;
 
-import casaapuestas.apuestas.*;
-import casaapuestas.arranque.*;
-import casaapuestas.equipos.*;
-import casaapuestas.partidos.*;
-import casaapuestas.usuarios.*;
-
 /**
  * Clase que representa una cuenta de dinero mantenida en la aplicación. Tiene un saldo y una lista de movimientos.
  * 

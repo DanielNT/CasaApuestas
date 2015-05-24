@@ -19,7 +19,7 @@ public enum CausaExcepcionEquipo {
 	 */
 	EQ_DUPLICADO,
 	/**
-	 * Uno o dos de los equipos no pertenecen a la lista.
+	 * Uno o dos de los equipos no pertenecen a la lista. Es decir son erróneos o no existen.
 	 */
 	EQ_INCORRECTO
 	
