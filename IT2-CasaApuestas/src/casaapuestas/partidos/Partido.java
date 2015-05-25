@@ -233,7 +233,7 @@ public class Partido {
 		aux.add(Calendar.HOUR, 2);
 		
 //		// Sentencia para comprobar que es correcto el escenario de éxito de la iteración 2.
-//		aux.set(2015, Calendar.MAY, 22, 19, 30); // LLegado a este punto utilizo esta sentencia para establecer la fecha de aux a otra de interés y así evitar que salte la excepción que viene a continuación con el objetivo de comprobar el escenario de éxito.
+		aux.set(2015, Calendar.MAY, 22, 19, 30); // LLegado a este punto utilizo esta sentencia para establecer la fecha de aux a otra de interés y así evitar que salte la excepción que viene a continuación con el objetivo de comprobar el escenario de éxito.
 		
 		// Compruba si el partido está finalizado. Si no está finalizado lanza la correspondiente excepcón.
 		if(!(fechaActual.after(aux)))
@@ -270,14 +270,16 @@ public class Partido {
 	
 	
 	/**
-	 * @return the idPartido
+	 * Devuelve el identificador del partido
+	 * @return el idPartido
 	 */
 	public String getIdPartido() {
 		return idPartido;
 	}
 	
 	/**
-	 * @return the equipoL
+	 * Devuelve el equipo local
+	 * @return el equipo local
 	 */
 	public Equipo getEquipoL() {
 		return equipoL;
@@ -285,7 +287,8 @@ public class Partido {
 	
 
 	/**
-	 * @param equipoL the equipoL to set
+	 * Cambia el equipo local
+	 * @param equipoL El equipo local nuevo
 	 */
 	public void setEquipoL(Equipo equipoL) {
 		this.equipoL = equipoL;
@@ -293,20 +296,23 @@ public class Partido {
 	
 	
 	/**
-	 * @return the equipoV
+	 * Devuelve el equipo visitante
+	 * @return el equipo visitante
 	 */
 	public Equipo getEquipoV() {
 		return equipoV;
 	}
 
 	/**
-	 * @param equipoV the equipoV to set
+	 * Cambia el equipo visitante
+	 * @param equipoV El equipo visitante nuevo
 	 */
 	public void setEquipoV(Equipo equipoV) {
 		this.equipoV = equipoV;
 	}
 
 	/**
+	 * Devuelve la fecha en la que se comienza a permitir nuevas apuestas
 	 * @return the fInicApuesta
 	 */
 	public Calendar getfInicApuesta() {
@@ -315,7 +321,8 @@ public class Partido {
 
 
 	/**
-	 * @param fInicApuesta the fInicApuesta to set
+	 * Cambia la fecha de inicio de las apuestas
+	 * @param fInicApuesta La nueva fecha de inicio de apuestas
 	 */
 	public void setfInicApuesta(Calendar fInicApuesta) {
 		this.fInicApuesta = fInicApuesta;
@@ -323,7 +330,8 @@ public class Partido {
 
 
 	/**
-	 * @return the fFinApuesta
+	 * Devuelve la fecha en la que ya no se permiten nuevas apuestas
+	 * @return la fecha de fin de apuesta
 	 */
 	public Calendar getfFinApuesta() {
 		return fFinApuesta;
@@ -331,7 +339,8 @@ public class Partido {
 
 
 	/**
-	 * @param fFinApuesta the fFinApuesta to set
+	 * Cambia la fecha de fin de las apuestas
+	 * @param fFinApuesta La nueva fecha de fin de apuestas
 	 */
 	public void setfFinApuesta(Calendar fFinApuesta) {
 		this.fFinApuesta = fFinApuesta;

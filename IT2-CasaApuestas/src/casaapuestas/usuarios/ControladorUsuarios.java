@@ -155,9 +155,9 @@ public class ControladorUsuarios {
 	
 	/**
 	 * Método que permite obtener un jugador mediante su login.
-	 * @param login
+	 * @param login El nombre de usuario del jugador
 	 * @return el jugador
-	 * @throws ExcepcionUsuario
+	 * @throws ExcepcionUsuario Si algo ha ido mal al obtener el jugador
 	 */
 	public Jugador getJugador(String login) throws ExcepcionUsuario {
 		

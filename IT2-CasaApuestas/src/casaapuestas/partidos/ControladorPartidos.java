@@ -306,11 +306,11 @@ public class ControladorPartidos {
 	
 	/**
 	 * Introduce el resultado para un partido para una modalidad en concreto.
-	 * @param idPartido
-	 * @param tApuesta
-	 * @param resultado
-	 * @throws ExcepcionPartidos
-	 * @throws ExcepcionApuesta 
+	 * @param idPartido El identificador del partido
+	 * @param tApuesta La modalidad de apuesta
+	 * @param resultado El resultado que se fija
+	 * @throws ExcepcionPartidos Si algo ha ido mal en la gestión del partido
+	 * @throws ExcepcionApuesta Si algo ha ido mal en la gestión de la apuesta
 	 */
 	public void fijarResultadoPartido(String idPartido, TipoApuesta tApuesta, String resultado) throws ExcepcionPartidos, ExcepcionApuesta {
 		
@@ -355,15 +355,15 @@ public class ControladorPartidos {
 	
 	/**
 	 * Realiza una serie de comprobaciones con los parámetros que recibe como argumentos y luego continúa con la creación de una apuesta en el sistema.
-	 * @param login
-	 * @param idPartido
-	 * @param tApuesta
-	 * @param resultado
-	 * @param cantidadApostada
-	 * @throws ExcepcionApuesta
-	 * @throws ExcepcionUsuario
-	 * @throws ExcepcionPartidos
-	 * @throws ExcepcionCuenta 
+	 * @param login El login del jugador
+	 * @param idPartido El identificador del partido
+	 * @param tApuesta La modalidad de apuesta
+	 * @param resultado El resultado apostado
+	 * @param cantidadApostada La cantidad que se apuesta
+	 * @throws ExcepcionApuesta Si algo ha ido mal con la gestión de las apuesta
+	 * @throws ExcepcionUsuario Si algo ha ido mal con la gestión del usuario
+	 * @throws ExcepcionPartidos Si algo ha ido mal con la gestión del partido
+	 * @throws ExcepcionCuenta Si algo ha ido mal con la gestión de la cuenta del jugador
 	 */
 	public void nuevaApuesta(String login, String idPartido, TipoApuesta tApuesta, String resultado,float cantidadApostada)throws ExcepcionApuesta, ExcepcionUsuario, ExcepcionPartidos, ExcepcionCuenta
 	{

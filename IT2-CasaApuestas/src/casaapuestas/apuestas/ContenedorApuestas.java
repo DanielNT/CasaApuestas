@@ -1,11 +1,13 @@
 package casaapuestas.apuestas;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import casaapuestas.cuentas.*;
 import casaapuestas.usuarios.*;
-import casaapuestas.constantes.*;
 
 /**
  * Contiene las apuestas de un partido para una única modalidad.
@@ -46,11 +48,6 @@ public class ContenedorApuestas {
 	public void crearApuesta(Jugador jugadorQueApuesta, TipoApuesta tApuesta, float cantidadApostada, String resultado, String equipos) throws ExcepcionCuenta
 	{
 		
-//		//Obtiene la fecha actual del sistema.
-//		Calendar fechaDeApuesta = Calendar.getInstance();
-//		fechaDeApuesta.getTime();
-			
-		// Apuesta a = new Apuesta(jugadorQueApuesta, fechaDeApuesta, cantidadApostada, resultado, equipos);
 		Apuesta a = new Apuesta(jugadorQueApuesta, tApuesta, cantidadApostada, resultado, equipos);
 		a.realizarTransaccionApuesta();
 		listadoApuestas.add(a);
@@ -82,20 +79,19 @@ public class ContenedorApuestas {
 	
 	
 	
-	
-	
 	/**
 	 * Este método tras comprobar que no estan aún pagadas sus apuestas, procede a pagar las apuestas realizadas para la modalidad solicitada.
-	 * @param resultado
-	 * @throws ExcepcionUsuario
-	 * @throws ExcepcionApuesta
+	 * @param resultado El resultado de la modalidad de apuesta
+	 * @throws ExcepcionUsuario Si algo ha ido mal en el pago
+	 * @throws ExcepcionApuesta Si algo ha ido mal respecto a las apuestas
 	 */
 	public void pagarApuestasContenedor(String resultado) throws ExcepcionUsuario, ExcepcionApuesta
 	{
 			
 		float totalApostado = (float) 0.0;
 		float totalGanador = (float) 0.0;
-		float ratio;
+		float ratio=0;
+		String CONFIG_RATIO="configuration.ratio";
 		
 		for(Apuesta a: listadoApuestas)
 		{
@@ -109,8 +105,31 @@ public class ContenedorApuestas {
 			}
 		}
 			
-		// Obtiene el ratio de pago de premios.
-		ratio = (float) Constantes.RATIO_PAGO*totalApostado/totalGanador;
+		
+		
+		//Obtenemos el valor del ratio de las propierties
+		Properties prop = new Properties();
+				
+		try {
+			//Busca el archivo en la ruta
+			FileInputStream input = new FileInputStream("resources/config.properties");
+					
+			//Lo carga en las propierties
+			prop.load(input);
+					
+			//Si no se encontrara la propiedad, lo carga por defecto a 0.8 (se puede quitar el primer argumento) y lo convierte a flotante
+			//Hay que parsear a float porque se devuelve una cadena String
+			ratio=Float.parseFloat(prop.getProperty(CONFIG_RATIO, "0.8")) *totalApostado/totalGanador;
+				
+					
+			//Si suponemos que nunca va a haber problemas (como que esté mal escrita, por ejemplo), entonces basta con
+			//ratio=Float.parseFloat(prop.getProperty(CONFIG_RATIO));
+				
+		} catch (IOException ex) {
+			//En este caso implementamos la excepción por defecto
+			ex.printStackTrace();
+		}
+		
 			
 		// Se pagan las apuestas ganadoras.
 		for(Apuesta a: listadoApuestas)
@@ -128,7 +147,8 @@ public class ContenedorApuestas {
 	
 	
 	/**
-	 * @return the modalidadPagada
+	 * Devuelve un parámetro booleano que indica si la modalidad del contenedor de apuestas se ha pagado
+	 * @return si la modalidad está pagada
 	 */
 	public boolean isModalidadPagada() {
 		return modalidadPagada;
