@@ -120,13 +120,13 @@ public class Partido {
 	
 	/**
 	 * Realiza una serie de comprobaciones con los parámetros que recibe como argumentos y luego continúa con la creación de una apuesta en el sistema.
-	 * @param jugadorQueApuesta
-	 * @param cantidadApostada
-	 * @param tApuesta
-	 * @param resultado
-	 * @throws ExcepcionApuesta
-	 * @throws ExcepcionCuenta 
-	 * @throws ExcepcionPartidos 
+	 * @param jugadorQueApuesta Pasa el jugador que apuesta como parámetro
+	 * @param cantidadApostada La cantidad que se apuesta
+	 * @param tApuesta La modalidad de apuesta
+	 * @param resultado El resultado apostado
+	 * @throws ExcepcionApuesta Si algo ha ido mal en la gestión de apuestas
+	 * @throws ExcepcionCuenta Si algo ha ido mal en la gestión de cuentas
+	 * @throws ExcepcionPartidos Si algo ha ido mal en la gestión de partidos
 	 */
 	public void añadirAContenedorApuestas(Jugador jugadorQueApuesta, float cantidadApostada, TipoApuesta tApuesta, String resultado) throws ExcepcionApuesta, ExcepcionCuenta, ExcepcionPartidos
 	{
@@ -177,9 +177,9 @@ public class Partido {
 	
 	/**
 	 * Este método tras comprobar que el partido tiene resultados (está por lo tanto finalizado) y que existe al menos una apuesta para la modalidad solicitada, procede a pagar las apuestas realizadas sobre el partido solicitado para la modalidad solicitada.
-	 * @param tApuesta
-	 * @throws ExcepcionUsuario
-	 * @throws ExcepcionApuesta 
+	 * @param tApuesta El tipo de modalidad
+	 * @throws ExcepcionUsuario Si algo ha ido mal en la gestión de usuarios
+	 * @throws ExcepcionApuesta Si algo ha ido mal en la gestión de partidos
 	 */
 	public void pagarApuestasModalidad(TipoApuesta tApuesta) throws ExcepcionUsuario, ExcepcionApuesta
 	{	
@@ -215,10 +215,10 @@ public class Partido {
 	
 	/**
 	 * Colecciona el resultado del partido para una modalidad concreta en el correspondiente listado.
-	 * @param tApuesta
-	 * @param resultado
-	 * @throws ExcepcionPartidos 
-	 * @throws ExcepcionApuesta 
+	 * @param tApuesta La modalidad de apuesta
+	 * @param resultado El resultado que introducimos
+	 * @throws ExcepcionPartidos Si algo ha ido mal en la gestión de partidos
+	 * @throws ExcepcionApuesta Si algo ha ido mal en la gestión de partidos
 	 */
 	public void setResultadoPartido(TipoApuesta tApuesta, String resultado) throws ExcepcionPartidos, ExcepcionApuesta {
 		

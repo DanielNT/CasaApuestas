@@ -38,12 +38,12 @@ public class ContenedorApuestas {
 	
 	/**
 	 * Este método crea la nueva Apuesta correspondiente a los parámetros que recibe.
-	 * @param jugadorQueApuesta
-	 * @param tApuesta 
-	 * @param cantidadApostada
-	 * @param resultado
-	 * @param equipos 
-	 * @throws ExcepcionCuenta 
+	 * @param jugadorQueApuesta Pasa el jugador que apuesta como parámetro
+	 * @param tApuesta La modalidad de apuesta
+	 * @param cantidadApostada La cantidad que se apuesta
+	 * @param resultado El resultado apostado
+	 * @param equipos Una cadena que combina el equipo local y el visitante (los nombres)
+	 * @throws ExcepcionCuenta Si algo ha ido mal en la gestión de cuentas
 	 */
 	public void crearApuesta(Jugador jugadorQueApuesta, TipoApuesta tApuesta, float cantidadApostada, String resultado, String equipos) throws ExcepcionCuenta
 	{
