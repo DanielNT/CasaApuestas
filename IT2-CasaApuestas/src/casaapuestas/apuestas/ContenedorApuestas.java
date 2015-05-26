@@ -122,11 +122,11 @@ public class ContenedorApuestas {
 					
 			//Si no se encontrara la propiedad, lo carga por defecto a 0.8 (se puede quitar el primer argumento) y lo convierte a flotante
 			//Hay que parsear a float porque getProperty devuelve una cadena String
-			ratio=Float.parseFloat(prop.getProperty(CONFIG_RATIO, "0.8")) *totalApostado/totalGanador;
+			//ratio=Float.parseFloat(prop.getProperty(CONFIG_RATIO, "0.8")) *totalApostado/totalGanador;
 				
 					
 			//Si suponemos que nunca va a haber problemas (como que esté mal escrita la propiedad, por ejemplo), entonces basta con
-			//ratio=Float.parseFloat(prop.getProperty(CONFIG_RATIO)) *totalApostado/totalGanador;
+			ratio=Float.parseFloat(prop.getProperty(CONFIG_RATIO)) *totalApostado/totalGanador;
 				
 		} catch (IOException ex) {
 			
