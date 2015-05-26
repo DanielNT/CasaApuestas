@@ -70,11 +70,11 @@ public class PruebasCasaApuestas2 {
 			//Se crea una fecha de fin de las apuestas, que se fija al 10 de mayo de 2015, a las 19:30
 			Calendar finApuestas = Calendar.getInstance();
 			finApuestas.clear();
-			finApuestas.set(2015, Calendar.MAY, 26, 19, 30);
+			finApuestas.set(2015, Calendar.MAY, 28, 19, 30);
 			//Se crean otras dos fechas de inicio y fin de apuestas, para el fin de semana siguiente
 			Calendar inicioApuestas2 = Calendar.getInstance();
 			inicioApuestas2.clear();
-			inicioApuestas2.set(2015, Calendar.MAY, 28, 8, 0);
+			inicioApuestas2.set(2015, Calendar.MAY, 29, 8, 0);
 			Calendar finApuestas2 = Calendar.getInstance();
 			finApuestas2.clear();
 			finApuestas2.set(2015, Calendar.MAY, 31, 19, 30);

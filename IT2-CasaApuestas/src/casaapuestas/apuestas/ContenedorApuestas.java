@@ -111,22 +111,26 @@ public class ContenedorApuestas {
 		Properties prop = new Properties();
 				
 		try {
-			//Busca el archivo en la ruta
-			FileInputStream input = new FileInputStream("resources/config.properties");
-					
+			//Busca el archivo en la carpeta resources
+			//FileInputStream input = new FileInputStream("resources/config.properties");
+			
+			//Busca el archivo en la carpeta src
+			FileInputStream input = new FileInputStream("src/config.properties");
+			
 			//Lo carga en las propierties
 			prop.load(input);
 					
 			//Si no se encontrara la propiedad, lo carga por defecto a 0.8 (se puede quitar el primer argumento) y lo convierte a flotante
-			//Hay que parsear a float porque se devuelve una cadena String
+			//Hay que parsear a float porque getProperty devuelve una cadena String
 			ratio=Float.parseFloat(prop.getProperty(CONFIG_RATIO, "0.8")) *totalApostado/totalGanador;
 				
 					
-			//Si suponemos que nunca va a haber problemas (como que esté mal escrita, por ejemplo), entonces basta con
-			//ratio=Float.parseFloat(prop.getProperty(CONFIG_RATIO));
+			//Si suponemos que nunca va a haber problemas (como que esté mal escrita la propiedad, por ejemplo), entonces basta con
+			//ratio=Float.parseFloat(prop.getProperty(CONFIG_RATIO)) *totalApostado/totalGanador;
 				
 		} catch (IOException ex) {
-			//En este caso implementamos la excepción por defecto
+			
+			//En este caso pedimos que muestre el camino que le ha llevado a la excepción (también se podría hacer similar al resto de excepciones)
 			ex.printStackTrace();
 		}
 		

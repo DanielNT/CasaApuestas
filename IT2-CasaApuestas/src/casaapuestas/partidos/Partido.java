@@ -232,8 +232,8 @@ public class Partido {
 		aux = (Calendar) fFinApuesta.clone();
 		aux.add(Calendar.HOUR, 2);
 		
-//		// Sentencia para comprobar que es correcto el escenario de éxito de la iteración 2.
-		aux.set(2015, Calendar.MAY, 22, 19, 30); // LLegado a este punto utilizo esta sentencia para establecer la fecha de aux a otra de interés y así evitar que salte la excepción que viene a continuación con el objetivo de comprobar el escenario de éxito.
+		// Sentencia para comprobar que es correcto el escenario de éxito de la iteración 2.
+		//aux.set(2015, Calendar.MAY, 22, 19, 30); // LLegado a este punto utilizo esta sentencia para establecer la fecha de aux a otra de interés y así evitar que salte la excepción que viene a continuación con el objetivo de comprobar el escenario de éxito.
 		
 		// Compruba si el partido está finalizado. Si no está finalizado lanza la correspondiente excepcón.
 		if(!(fechaActual.after(aux)))
