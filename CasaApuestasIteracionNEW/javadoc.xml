@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project default="javadoc">
-    <target name="javadoc">
-        <javadoc access="public" additionalparam="-link https://docs.oracle.com/javase/8/docs/api/ -encoding ISO-8859-1 -charset  ISO-8859-1 -docencoding  ISO-8859-1 " author="true" classpath="." destdir="doc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="casaapuestas.usuarios,casaapuestas.cuentas" source="1.6" sourcepath="src" splitindex="true" use="true" version="true"/>
-    </target>
-</project>
